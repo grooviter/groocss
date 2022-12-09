@@ -1,10 +1,13 @@
 
-[Build Status](https://gitlab.com/adamldavis/groocss/pipelines)
-[ ![Download](https://api.bintray.com/packages/adamldavis/maven/GrooCSS/images/download.svg) ](https://bintray.com/adamldavis/maven/GrooCSS/_latestVersion)
-/ [Gradle Plugin](https://plugins.gradle.org/plugin/org.groocss.groocss-gradle-plugin)
+![GitHub](https://img.shields.io/github/license/adamldavis/groocss)
+![Maven Central](https://img.shields.io/maven-central/v/org.groocss/groocss)
+![Gradle Plugin Portal](https://img.shields.io/gradle-plugin-portal/v/org.groocss.groocss-gradle-plugin)
+
+<p align="center">
+  <img width="25%" src="gradle/groocss2_256.png" />
+</p>
 
 # GrooCSS
-
 Like [Less](http://lesscss.org/) but without inventing a new language.
 
 [GrooCSS](http://groocss.org) lets you code your CSS in Groovy, using a natural Groovy DSL.
