@@ -2,19 +2,12 @@ plugins {
    // id 'com.gradle.build-scan' version '1.0'
     id "groovy"
     id "application"
-    id 'maven-publish'
-    id "com.jfrog.bintray" version "1.7.1"
 }
 
 //buildScan {
 //    licenseAgreementUrl = 'https://gradle.com/terms-of-service'
 //    licenseAgree = 'yes'
 //}
-
-repositories {
-    jcenter()
-}
-
 dependencies {
     implementation "org.codehaus.groovy:groovy-all:$groovyVersion"
     testImplementation "org.spockframework:spock-core:${getSpockClassifier(groovyVersion)}", {
@@ -22,12 +15,7 @@ dependencies {
     }
 }
 
-project.group = 'org.groocss'
-applicationName = "groocss"
 mainClassName= 'org.groocss.Main'
-
-sourceCompatibility = "1.8"
-targetCompatibility = "1.8"
 
 test {
   def projectDir = "$project.projectDir"
@@ -52,29 +40,29 @@ task jars {
 }
 tasks['jar'].archiveName = "${applicationName}-${project.version}.jar"
 
-bintray {
-    user = System.getenv('BINTRAY_USER')
-    key = System.getenv('BINTRAY_KEY')
-    pkg {
-        repo = 'maven'
-        name = 'GrooCSS'
-        licenses = ['Apache-2.0']
-        vcsUrl = 'https://github.com/adamldavis/groocss.git'
-        version {
-            name = project.version
-            released  = new Date()
-        }
-        filesSpec {
-            from "$project.buildDir/libs", {
-                include '*.jar'
-            }
-            from "$project.buildDir/", {
-                include '*.pom'
-            }
-            into "org/groocss/groocss/$project.version"
-        }
-    }
-}
+//bintray {
+//    user = System.getenv('BINTRAY_USER')
+//    key = System.getenv('BINTRAY_KEY')
+//    pkg {
+//        repo = 'maven'
+//        name = 'GrooCSS'
+//        licenses = ['Apache-2.0']
+//        vcsUrl = 'https://github.com/adamldavis/groocss.git'
+//        version {
+//            name = project.version
+//            released  = new Date()
+//        }
+//        filesSpec {
+//            from "$project.buildDir/libs", {
+//                include '*.jar'
+//            }
+//            from "$project.buildDir/", {
+//                include '*.pom'
+//            }
+//            into "org/groocss/groocss/$project.version"
+//        }
+//    }
+//}
 
 task prepareRelease(dependsOn: clean, description: 'Cleans build and removes -SNAPSHOT') doLast {
     def props = file('gradle.properties')
@@ -85,10 +73,10 @@ task prepareRelease(dependsOn: clean, description: 'Cleans build and removes -SN
 task buildRelease(dependsOn: ['clean', 'test', 'jars', 'pom'], description: 'Tests and builds artifacts',
         group: 'build') {}
 
-task release(dependsOn: [buildRelease, bintrayUpload],
-        description: 'Builds then Uploads artifacts to bintray maven repo (jcenter)', group: 'publishing') doLast {
-    println "Uploaded $project.version to bintray"
-}
+//task release(dependsOn: [buildRelease, bintrayUpload],
+//        description: 'Builds then Uploads artifacts to bintray maven repo (jcenter)', group: 'publishing') doLast {
+//    println "Uploaded $project.version to bintray"
+//}
 
 task inc(description: 'Increments the project version') doLast { incrementVersion() }
 

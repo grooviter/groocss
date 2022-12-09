@@ -31,26 +31,18 @@ apply plugin: "maven-publish"
 apply plugin: "groovy"
 apply plugin: "com.gradle.plugin-publish"
 
-repositories {
-    mavenLocal()
-    mavenCentral()
-    jcenter()
-}
 dependencies {
     implementation gradleApi()
-    implementation localGroovy()
-    implementation project(':'), {
+    implementation "org.codehaus.groovy:groovy:3.0.0" // <--- should be the same as the project
+    implementation project(':groocss'), {
         exclude module: "groovy-all", group: "org.codehaus.groovy"
     }
-    testImplementation 'org.spockframework:spock-core:1.3-groovy-2.4', {
+    testImplementation 'org.spockframework:spock-core:2.2-groovy-3.0', {
         exclude module: "groovy-all", group: "org.codehaus.groovy"
     }
     testImplementation "net.bytebuddy:byte-buddy:1.9.13"
     testImplementation "org.objenesis:objenesis:3.0.1"
 }
-
-group = 'org.groocss'
-version = "${parent.project.version}"
 
 pluginBundle {
     website = 'http://www.groocss.org/'

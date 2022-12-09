@@ -6,20 +6,21 @@ config {
     release = (rootProject.findProperty('release') ?: false).toBoolean()
 
     info {
-        name        = 'Sample'
-        vendor      = 'Acme'
-        description = 'Sample project'
+        name        = 'GrooCSS'
+        vendor      = 'GrooCSS'
+        description = 'Code CSS in Groovy'
 
         links {
-            website      = 'https://github.com/joecool/sample'
-            issueTracker = 'https://github.com/joecool/sample/issues'
-            scm          = 'https://github.com/joecool/sample.git'
+            website      = 'http://www.groocss.org'
+            issueTracker = 'https://github.com/adamldavis/groocss/issues'
+            scm          = 'https://github.com/adamldavis/groocss.git'
         }
 
         people {
             person {
-                id    = 'joecool'
-                name  = 'Joe Cool'
+                id    = 'adamldavis'
+                name  = 'Adam L. Davis'
+                email = 'adamd@adamldavis.com'
                 roles = ['developer']
             }
         }
@@ -32,6 +33,21 @@ config {
             }
         }
     }
+}
+
+subprojects {
+    pluginManager.withPlugin("java", {
+//        test {
+//            useJUnitPlatform()
+//        }
+        compileJava {
+            sourceCompatibility = "1.8"
+            targetCompatibility = "1.8"
+        }
+//        compileGroovy {
+//            groovyOptions.configurationScript = file("$rootDir/config/groovy/compiler.groovy")
+//        }
+    })
 }
 
 allprojects {
