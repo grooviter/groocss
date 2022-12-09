@@ -1,0 +1,48 @@
+plugins {
+    id 'org.kordamp.gradle.guide'
+    id 'org.ajoberstar.git-publish'
+}
+
+task setAuthentication() {
+    doLast {
+        System.setProperty('org.ajoberstar.grgit.auth.username', findProperty('PUBLISH_GH_TOKEN'))
+    }
+}
+
+gitPublish {
+    repoUri = 'https://github.com/adamldavis/groocss.git'
+    branch = 'gh-pages'
+    commitMessage = "Released version $version"
+
+    contents {
+        from file("$buildDir/site/docs/html5")
+        duplicatesStrategy DuplicatesStrategy.INCLUDE
+    }
+}
+
+gitPublishPush {
+    dependsOn 'setAuthentication'
+}
+
+asciidoctor {
+    sourceDir 'src/docs/asciidoc'
+    outputDir file("$buildDir/site/docs/html5")
+
+    sources {
+        include 'index.adoc'
+    }
+
+    attributes  'endpoint-url'   : 'http://github.com/adamldavis/groocss',
+            'source-highlighter' : 'coderay',
+            'releaseVersion'     : version,
+            'imagesdir'          : './images',
+            'toc'                : 'left',
+            'icons'              : 'font',
+            'toclevels'          : 3
+}
+
+asciidoctorj {
+    modules {
+        diagram.version '2.1.0'
+    }
+}
