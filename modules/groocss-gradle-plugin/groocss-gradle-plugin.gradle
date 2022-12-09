@@ -27,7 +27,7 @@ buildscript {
 
 description = "Build time GrooCSS support with the Gradle build tool - http://gradle.org"
 
-apply plugin: "maven"
+apply plugin: "maven-publish"
 apply plugin: "groovy"
 apply plugin: "com.gradle.plugin-publish"
 
@@ -37,16 +37,16 @@ repositories {
     jcenter()
 }
 dependencies {
-    compile gradleApi()
-    compile localGroovy()
-    compile project(':'), {
+    implementation gradleApi()
+    implementation localGroovy()
+    implementation project(':'), {
         exclude module: "groovy-all", group: "org.codehaus.groovy"
     }
-    testCompile 'org.spockframework:spock-core:1.3-groovy-2.4', {
+    testImplementation 'org.spockframework:spock-core:1.3-groovy-2.4', {
         exclude module: "groovy-all", group: "org.codehaus.groovy"
     }
-    testRuntime "net.bytebuddy:byte-buddy:1.9.13"
-    testRuntime "org.objenesis:objenesis:3.0.1"
+    testImplementation "net.bytebuddy:byte-buddy:1.9.13"
+    testImplementation "org.objenesis:objenesis:3.0.1"
 }
 
 group = 'org.groocss'
@@ -66,8 +66,8 @@ pluginBundle {
         }
     }
 }
-install {
-    repositories.mavenInstaller {
-        pom.artifactId = 'groocss-gradle-plugin'
-    }
-}
+//install {
+//    repositories.mavenInstaller {
+//        pom.artifactId = 'groocss-gradle-plugin'
+//    }
+//}
