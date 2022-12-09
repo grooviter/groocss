@@ -1,0 +1,42 @@
+plugins {
+    id "com.bertramlabs.asset-pipeline" version "3.0.10"
+}
+
+repositories {
+    jcenter()
+    mavenCentral()
+}
+
+dependencies {
+    assets "com.bertramlabs.plugins:jsx-asset-pipeline:$assets_pipeline"
+    assets "com.bertramlabs.plugins:typescript-asset-pipeline:$assets_pipeline"
+    assets("com.bertramlabs.plugins:groocss-asset-pipeline:$assets_pipeline") {
+        exclude group: "org.groocss", module: "groocss"
+    }
+
+    assets project(":groocss")
+}
+
+assets {
+    minifyJs         = true
+    minifyCss        = true
+    enableSourceMaps = true
+    maxThreads       = 8
+    configOptions    = [
+            commonJs: true,
+            enableES6: false,
+            groocss: [
+                    prettyPrint: false,
+                    compress: true,
+                    noExts: false,
+                    convertUnderline: false
+            ]
+    ]
+    excludes = [
+            'components/*',
+            'react*.js',
+            'layout/*',
+            'custom/*.css',
+            '*.groocss',
+    ]
+}

@@ -1,0 +1,4 @@
+
+_.red {
+    color red
+}
