@@ -34,7 +34,7 @@ asciidoctor {
 
     attributes  'endpoint-url'   : 'http://github.com/adamldavis/groocss',
             'source-highlighter' : 'coderay',
-            'releaseVersion'     : version,
+            'version'            : version,
             'imagesdir'          : './images',
             'toc'                : 'left',
             'icons'              : 'font',

@@ -1,5 +1,5 @@
 = GrooCSS
-:revnumber: {releaseVersion}
+:revnumber: {version}
 :numbered:
 :imagesDir: images/
 :baseDir: ../../../../../modules
