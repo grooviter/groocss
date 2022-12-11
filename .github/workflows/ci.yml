@@ -12,4 +12,4 @@ jobs:
         with:
           java-version: '11'
       - name: build and test
-        run: ./gradlew build
+        run: ./gradlew build -x license
