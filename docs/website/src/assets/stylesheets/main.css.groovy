@@ -1,4 +1,0 @@
-
-_.red {
-    color red
-}

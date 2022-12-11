@@ -32,7 +32,7 @@ def css = GrooCSS.withConfig { prettyPrint() }.process {
         width 400.px
         display 'flex'
     }
-}.writeTo(new File('main.css'))
+}.writeTo(new File('main'))
 ----
 
 Although not recommended, this code would create CSS from the given DSL. Invoke "groovy makeCss.groovy" at the command line to run it. It would output in "main.css" the following:

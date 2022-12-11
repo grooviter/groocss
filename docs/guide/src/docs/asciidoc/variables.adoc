@@ -54,7 +54,7 @@ This can enable you to use importFile using the buildDir variable. Eg:
 
 [source, groovy]
 ----
-'main.css'.groocss {
+'main'.groocss {
     importFile("$buildDir/../groocss/myfile1.css.groovy")
     importFile("$buildDir/../groocss/myfile2.css.groovy")
 }
