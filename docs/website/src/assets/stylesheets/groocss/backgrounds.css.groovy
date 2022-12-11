@@ -1,5 +1,5 @@
 _.'primary' {
-    backgroundColor '#8ade8d'
+    backgroundColor '#003844'
 }
 
 _.'bg-gray-100' {
