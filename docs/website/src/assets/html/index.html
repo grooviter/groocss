@@ -12,23 +12,23 @@
             <div class="menu">
                 <ul class="text-primary">
                     <li>
-                        <a href="">Manual</a>
+                        <a target="_blank" href="guide/index.html">Docs</a>
                     </li>
                     <li>
-                        <a href="">API</a>
+                        <a target="_blank" href="api/index.html">API</a>
                     </li>
                     <li>
-                        <a href="https://github.com/adamldavis/groocss.git">
+                        <a target="_blank" href="https://github.com/adamldavis/groocss.git">
                             <i class="fa fa-github"></i> Code
                         </a>
                     </li>
                     <li>
-                        <a href="https://github.com/adamldavis/groocss/issues">
+                        <a target="_blank" href="https://github.com/adamldavis/groocss/issues">
                             <i class="fa fa-github"></i> Issues
                         </a>
                     </li>
                     <li>
-                        <a href="https://twitter.com/groocss">
+                        <a target="_blank" href="https://twitter.com/groocss">
                             <i class="fa fa-twitter"></i> Twitter
                         </a>
                     </li>
@@ -40,10 +40,10 @@
                 <img src="groocss.png" />
                 <p class="text-l text-gray-100 mb-1">GrooCSS lets you code your CSS in Groovy</p>
                 <div class="pb-3 pt-1">
-                    <h3 class="text-gray-100 text-xxl mb-0 mt-0">v1.0.0</h3>
+                    <h3 id="version" class="text-gray-100 text-xxl mb-0 mt-0 text-lower">---</h3>
                     <p class="text-gray-300 mt-0 text-upper">Latest Release</p>
                 </div>
-                <a href="#"
+                <a href="guide/index.html"
                    class="pt-1 pb-1 pr-2 pl-2 radius-1 primary text-bold-800 text-sd text-gray-100 text-none opacity-80-hover">
                     Documentation
                 </a>
@@ -52,5 +52,12 @@
         <div class="footer bg-gray-400">
 
         </div>
+        <script>
+            fetch("https://api.github.com/repos/adamldavis/groocss/releases/latest")
+                .then(response => response.json())
+                .then(json => {
+                    document.getElementById("version").textContent = json.tag_name
+                })
+        </script>
     </body>
 </html>

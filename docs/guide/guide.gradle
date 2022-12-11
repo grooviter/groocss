@@ -26,8 +26,6 @@ gitPublishPush {
 
 asciidoctor {
     sourceDir 'src/docs/asciidoc'
-    outputDir file("$buildDir/site/docs/html5")
-
     sources {
         include 'index.adoc'
     }

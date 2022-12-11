@@ -101,3 +101,7 @@ _.'text-xl' {
 _.'text-upper' {
     textTransform 'uppercase'
 }
+
+_.'text-lower' {
+    textTransform 'lowercase'
+}

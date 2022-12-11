@@ -15,7 +15,6 @@ config {
             issueTracker = 'https://github.com/adamldavis/groocss/issues'
             scm          = 'https://github.com/adamldavis/groocss.git'
         }
-
         people {
             person {
                 id    = 'adamldavis'
@@ -25,7 +24,6 @@ config {
             }
         }
     }
-
     licensing {
         licenses {
             license {
@@ -37,21 +35,29 @@ config {
 
 subprojects {
     pluginManager.withPlugin("java", {
-//        test {
-//            useJUnitPlatform()
-//        }
         compileJava {
             sourceCompatibility = "1.8"
             targetCompatibility = "1.8"
         }
-//        compileGroovy {
-//            groovyOptions.configurationScript = file("$rootDir/config/groovy/compiler.groovy")
-//        }
     })
 }
 
 allprojects {
     repositories {
         mavenCentral()
+    }
+}
+
+task generateSite {
+    dependsOn(":groocss:groovydoc",":guide:clean",":guide:asciidoctor", ":website:assetClean", ":website:assetCompile")
+    doLast {
+        copy {
+            from "$rootDir/docs/guide/build/docs/asciidoc"
+            into "$rootDir/docs/website/build/assets/guide"
+        }
+        copy {
+            from "$rootDir/modules/groocss/build/docs/groovydoc"
+            into "$rootDir/docs/website/build/assets/api"
+        }
     }
 }
