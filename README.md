@@ -3,16 +3,10 @@
 ![Maven Central](https://img.shields.io/maven-central/v/org.groocss/groocss)
 ![Gradle Plugin Portal](https://img.shields.io/gradle-plugin-portal/v/org.groocss.groocss-gradle-plugin)
 
-<img width="200" style="border-radius:100%" src="gradle/groocss2_256.png" />
-
 # GrooCSS
-Like [Less](http://lesscss.org/) but without inventing a new language.
+Like [Less](http://lesscss.org/) but without inventing a new language. [GrooCSS](http://groocss.org) lets you code your CSS in Groovy, using a natural Groovy DSL.
 
-[GrooCSS](http://groocss.org) lets you code your CSS in Groovy, using a natural Groovy DSL.
-
-It was created by Adam L. Davis (@adamldavis) and inspired by the many other Groovy-based projects out there, like 
-[Gradle](gradle.org), [Grails](https://grails.org/), 
-[Spock](https://github.com/spockframework/spock), [Ratpack](https://ratpack.io/), and [grooscript](http://grooscript.org/).
+## Main features
 
 - DSL similar to CSS but with camel-case and some modifications to make it valid Groovy.
 - Keyframes, media, charset, and font-face support.
@@ -33,6 +27,12 @@ It was created by Adam L. Davis (@adamldavis) and inspired by the many other Gro
 - Validates some values by default and can be configured with custom validators and/or processors.
 - Uses Groovy extension modules
 
+## Inception
+
+It was created by Adam L. Davis (@adamldavis) and inspired by the many other Groovy-based projects out there, like
+[Gradle](gradle.org), [Grails](https://grails.org/),
+[Spock](https://github.com/spockframework/spock), [Ratpack](https://ratpack.io/), and [grooscript](http://grooscript.org/).
+
 ## How to contribute
 
 Please see [CONTRIBUTING.md](./CONTRIBUTING.md) for contribution guidelines.
@@ -41,7 +41,7 @@ Please see [CONTRIBUTING.md](./CONTRIBUTING.md) for contribution guidelines.
 
 Uses Spock for testing. Well tested.
 
-## Open Source
+## License
 
 Apache 2 licensed. Open Source. 
 
