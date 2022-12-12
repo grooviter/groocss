@@ -43,8 +43,6 @@ You can then generate the API reference HTML by running…
 
 You will then find the compiled HTML in the directory `modules/groocss/build/docs/groovydoc`
 
-> Note that you can build the manual chapters and reference API in one go with `./gradlew doc:manual:packageManual`
-
 ## Contributing features/patches
 
 The source code for the modules is contained in the `modules/` directory.
