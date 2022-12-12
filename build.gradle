@@ -1,9 +1,10 @@
 plugins {
     id 'org.kordamp.gradle.groovy-project' version "$kordamp"
+    id 'org.jreleaser' version '1.3.1'
 }
 
 config {
-    release = (rootProject.findProperty('release') ?: false).toBoolean()
+    release = !version.endsWith('SNAPSHOT')
 
     info {
         name        = 'GrooCSS'
@@ -30,6 +31,31 @@ config {
                 id = 'Apache-2.0'
             }
         }
+    }
+}
+
+jreleaser {
+    release {
+        github {
+            token     = findProperty('PUBLISH_GH_TOKEN')
+            overwrite = true
+            changelog {
+                formatted = 'ALWAYS'
+                preset    = 'conventional-commits'
+                hide {
+                    uncategorized = true
+                }
+            }
+            prerelease {
+                enabled = version.endsWith("SNAPSHOT")
+            }
+        }
+    }
+    signing {
+        active = 'NEVER'
+    }
+    deploy {
+        maven { active = 'NEVER' }
     }
 }
 
