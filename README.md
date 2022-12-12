@@ -33,6 +33,10 @@ It was created by Adam L. Davis (@adamldavis) and inspired by the many other Gro
 - Validates some values by default and can be configured with custom validators and/or processors.
 - Uses Groovy extension modules
 
+## How to contribute
+
+Please see [CONTRIBUTING.md](./CONTRIBUTING.md) for contribution guidelines.
+
 ## Tested
 
 Uses Spock for testing. Well tested.
