@@ -55,7 +55,7 @@ _.hero {
   position 'absolute'
   top '50%'
   left '50%'
-  transform 'translate(-50%, -65%)'
+  transform 'translate(-50%, -60%)'
 
   add '> img', {
     border '1px solid #888'
