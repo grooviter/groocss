@@ -3,10 +3,10 @@
 ![Maven Central](https://img.shields.io/maven-central/v/org.groocss/groocss)
 ![Gradle Plugin Portal](https://img.shields.io/gradle-plugin-portal/v/org.groocss.groocss-gradle-plugin)
 
+<img width="200" style="border-radius:100%" src="gradle/groocss2_256.png" />
+
 # GrooCSS
 Like [Less](http://lesscss.org/) but without inventing a new language.
-
-![](gradle/groocss2_256.png)
 
 [GrooCSS](http://groocss.org) lets you code your CSS in Groovy, using a natural Groovy DSL.
 
