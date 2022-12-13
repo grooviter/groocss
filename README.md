@@ -4,7 +4,7 @@
 ![Gradle Plugin Portal](https://img.shields.io/gradle-plugin-portal/v/org.groocss.groocss-gradle-plugin)
 
 # GrooCSS
-Like [Less](http://lesscss.org/) but without inventing a new language. [GrooCSS](http://groocss.org) lets you code your CSS in Groovy, using a natural Groovy DSL.
+[GrooCSS](http://groocss.org) lets you code your CSS in Groovy, using a natural Groovy DSL.
 
 ## Main features
 
@@ -37,13 +37,9 @@ It was created by Adam L. Davis (@adamldavis) and inspired by the many other Gro
 
 Please see [CONTRIBUTING.md](./CONTRIBUTING.md) for contribution guidelines.
 
-## Tested
-
-Uses Spock for testing. Well tested.
-
 ## License
 
-Apache 2 licensed. Open Source. 
+GrooCSS is licensed under [ASLv2](http://www.apache.org/licenses/LICENSE-2.0). All source code falls under this license. 
 
 ## Website
 
