@@ -18,8 +18,12 @@ _.'text-gray-300' {
     color '#999999'
 }
 
-_.'text-gray-800' {
+_.'text-gray-600' {
     color '#555'
+}
+
+_.'text-gray-800' {
+    color '#333'
 }
 
 _.'text-gray-400' {
@@ -75,7 +79,7 @@ _.'text-normal' {
 }
 
 _.'text-sd' {
-    fontSize 1.1.em
+    fontSize 0.8.em
 }
 
 _.'text-md' {

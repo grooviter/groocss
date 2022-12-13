@@ -39,23 +39,49 @@ _.header {
 
 _.'content-wrapper' {
   display 'flex'
-  justifyContent 'space-between'
+  justifyContent 'start'
   position 'absolute'
   //backgroundColor '#1b1c1d'
-  background "url(pawel-czerwinski-zHXiGy5853Y-unsplash.jpg) no-repeat center center fixed"
-  //Photo by <a href="https://unsplash.com/@pawel_czerwinski?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Pawel Czerwinski</a> on <a href="https://unsplash.com/s/photos/geometric-pattern?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+
+  background "url(pawel-czerwinski-dgJT71cXlC4-unsplash.jpg) no-repeat center center fixed"
   overflow 'hidden'
   top 3.em
   bottom 4.em
   width '100%'
 }
 
-_.hero {
-  textAlign 'center'
+_.'contrast-hero-1' {
   position 'absolute'
-  top '50%'
-  left '50%'
-  transform 'translate(-50%, -60%)'
+  top '26%'
+  left '10%'
+  width 10.em
+  minHeight 5.em
+  backgroundColor '#aec2ff'
+  transform 'rotate(293deg)'
+}
+
+_.'contrast-hero-2' {
+  position 'absolute'
+  top '25%'
+  left '27%'
+  width 7.5.em
+  minHeight 5.em
+  backgroundColor '#88d08a'
+  transform 'rotate(80deg)'
+}
+
+_.hero {
+  textAlign 'left'
+  position 'relative'
+  top '22%'
+  left '10%'
+  add '> h1', {
+    width 11.em
+  }
+
+  add '> p', {
+    width 20.em
+  }
 
   add '> img', {
     border '1px solid #888'
@@ -63,7 +89,6 @@ _.hero {
     padding 1.em
     width 200.px
   }
-
 }
 
 _.footer {
