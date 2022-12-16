@@ -39,20 +39,20 @@ assets {
     enableSourceMaps = true
     maxThreads       = 8
     configOptions    = [
-            commonJs: true,
-            enableES6: false,
-            groocss: [
-                    prettyPrint: false,
-                    compress: true,
-                    noExts: false,
-                    convertUnderline: false
-            ]
+        commonJs: true,
+        enableES6: false,
+        groocss: [
+            prettyPrint: false,
+            compress: true,
+            noExts: false,
+            convertUnderline: false
+        ]
     ]
     excludes = [
-            'components/*',
-            'react*.js',
-            'layout/*',
-            'custom/*.css',
-            '*.groocss',
+        'components/*',
+        'react*.js',
+        'layout/*',
+        'custom/*.css',
+        '*.groocss',
     ]
 }
