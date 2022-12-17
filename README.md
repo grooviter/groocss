@@ -12,7 +12,7 @@ Check out the [website](http://www.groocss.org/) for more info.
 
 ## How to contribute
 
-Please see [CONTRIBUTING.md](./CONTRIBUTING.md) for contribution guidelines.
+Please see [contribution page](./CONTRIBUTING.md) for contribution guidelines.
 
 ## License
 
