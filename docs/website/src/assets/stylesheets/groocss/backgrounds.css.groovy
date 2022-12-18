@@ -1,9 +1,3 @@
-// OPACITY
-_.'opacity-80-hover' {
-    add ':hover', {
-        opacity '80%'
-    }
-}
 // GRAY
 _.'bg-gray-100' { backgroundColor '#EFEFEF' }
 _.'bg-gray-200' { backgroundColor '#CCCCCC' }

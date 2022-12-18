@@ -54,6 +54,17 @@ _.'text-md' { fontSize 1.2.em }
 _.'text-l' { fontSize 1.5.em }
 _.'text-xl' { fontSize 2.em }
 _.'text-xxl' { fontSize 3.em }
+// TEXT SIZE TABLET
+media 'only screen and (max-width: 1268px)', {
+    _.'text-xxs-tablet' { fontSize 0.4.em }
+    _.'text-xs-tablet' { fontSize 0.6.em }
+    _.'text-s-tablet' { fontSize 0.8.em }
+    _.'text-sm-tablet' { fontSize 1.em }
+    _.'text-md-tablet' { fontSize 1.2.em }
+    _.'text-l-tablet' { fontSize 1.5.em }
+    _.'text-xl-tablet' { fontSize 2.em }
+    _.'text-xxl-tablet' { fontSize 3.em }
+}
 // TEXT TRANSFORMS
 _.'text-upper' { textTransform 'uppercase' }
 _.'text-lower' { textTransform 'lowercase' }
