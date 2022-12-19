@@ -72,3 +72,14 @@ _.'pl-5' { paddingLeft linear5() }
 _.'pl-6' { paddingLeft linear6() }
 _.'pl-7' { paddingLeft linear7() }
 _.'pl-8' { paddingLeft linear8() }
+
+_.'px-0' { paddingLeft linear0() paddingRight linear0() }
+_.'py-0' { paddingBottom linear0() paddingTop linear0() }
+_.'px-1' { paddingLeft linear1() paddingRight linear1() }
+_.'py-1' { paddingBottom linear1() paddingTop linear1() }
+_.'px-2' { paddingLeft linear2() paddingRight linear2() }
+_.'py-2' { paddingBottom linear2() paddingTop linear2() }
+_.'px-3' { paddingLeft linear3() paddingRight linear3() }
+_.'py-3' { paddingBottom linear3() paddingTop linear3() }
+_.'px-4' { paddingLeft linear4() paddingRight linear4() }
+_.'py-4' { paddingBottom linear4() paddingTop linear4() }

@@ -1,11 +1,8 @@
 _.header {
-  backgroundColor 'black'
   minHeight 3.em
   display 'flex'
   justifyContent 'center'
   alignItems 'center'
-  paddingRight 2.em
-  paddingLeft 2.em
 
   media 'only screen and (max-width: 1268px)', {
     _.header {
@@ -17,14 +14,12 @@ _.header {
     width '40%'
     display 'flex'
     justifyContent 'center'
-
     add '> ul', {
       listStyleType 'none'
       display 'flex'
       flexDirection 'row'
       justifyContent 'space-between'
       width '100%'
-
       add '> li', {
         marginLeft 14.px
         display 'flex'
@@ -44,7 +39,7 @@ _.'content-wrapper' {
   display 'flex'
   justifyContent 'space-between'
   minHeight '80vh'
-  background "url(pawel-czerwinski-L8fXJgMk5jc-unsplash.jpg) no-repeat center center fixed"
+  background "url(enlsipomy-t4QIHUv8ge0-unsplash.jpg) no-repeat center center fixed"
   width '100%'
 }
 
@@ -60,19 +55,20 @@ _.'hero-wrapper' {
   display 'flex'
   justifyContent 'center'
   alignItems 'center'
-
   add '> .hero', {
     textAlign 'left'
-
     add '> h1', { width 11.em }
     add '> p', { width 20.em }
-    add '> img', {
-      border '1px solid #888'
-      borderRadius '100%'
-      padding 1.em
-      width 200.px
-    }
   }
+}
+
+_.'logo-wrapper' {
+  width '50%'
+  display 'flex'
+  justifyContent 'center'
+  alignItems 'center'
+  opacity '60%'
+  add '> img', { width 15.em }
 }
 
 _.features {
@@ -80,11 +76,7 @@ _.features {
   listStyleType 'none'
   flexDirection 'space-around'
   width '100%'
-
-  add '> li', {
-    width '25%'
-    padding '0 1em'
-  }
+  add '> li', { width '25%' }
 }
 
 _.footer {

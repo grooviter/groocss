@@ -10,16 +10,17 @@ _.'text-gray-500' { color '#64748b' }
 _.'text-gray-600' { color '#475569' }
 _.'text-gray-700' { color '#334155' }
 _.'text-gray-800' { color '#1e293b' }
-// COLOR-TEAL
-_.'text-teal-50' { color '#f0fdfa' }
-_.'text-teal-100' { color '#ccfbf1' }
-_.'text-teal-200' { color '#99f6e4' }
-_.'text-teal-300' { color '#5eead4' }
-_.'text-teal-400' { color '#2dd4bf' }
-_.'text-teal-500' { color '#14b8a6' }
-_.'text-teal-600' { color '#0d9488' }
-_.'text-teal-700' { color '#0f766e' }
-_.'text-teal-800' { color '#115e59' }
+// COLOR-GREEN
+_.'text-green-50' { color '#f0fdf4' }
+_.'text-green-100' { color '#dcfce7' }
+_.'text-green-200' { color '#bbf7d0' }
+_.'text-green-300' { color '#86efac' }
+_.'text-green-400' { color '#4ade80' }
+_.'text-green-500' { color '#22c55e' }
+_.'text-green-600' { color '#16a34a' }
+_.'text-green-700' { color '#15803d' }
+_.'text-green-800' { color '#166534' }
+_.'text-green-900' { color '#14532d' }
 // TEXT WEIGHT
 _.'text-bold-100' { fontWeight '100' }
 _.'text-bold-200' { fontWeight '200' }
