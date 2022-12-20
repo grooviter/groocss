@@ -2,8 +2,8 @@
 ## Introduction
 
 It was created by Adam L. Davis (@adamldavis) and inspired by the many other Groovy-based projects out there, like
-[Gradle](gradle.org), [Grails](https://grails.org/),
-[Spock](https://github.com/spockframework/spock), [Ratpack](https://ratpack.io/), and [grooscript](http://grooscript.org/).
+https://gradle.org[Gradle], https://grails.org/[Grails],
+https://github.com/spockframework/spock[Spock], https://ratpack.io/[Ratpack], and http://grooscript.org/[Grooscript].
 
 ### Main features
 
