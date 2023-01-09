@@ -1,11 +1,19 @@
 .gradle
-.idea
 *~
 *.class
 build/
 target/
+out/
+
 index.groocss
 *.bak
 *.cya
 sources/
 
+.idea
+*.iml
+*.ipr
+*.iws
+.project
+.settings
+.classpath
