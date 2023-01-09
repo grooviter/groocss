@@ -39,8 +39,11 @@ _.'content-wrapper' {
   display 'flex'
   justifyContent 'space-between'
   minHeight '80vh'
-  background "url(enlsipomy-t4QIHUv8ge0-unsplash.jpg) no-repeat center center fixed"
   width '100%'
+
+  add '.background', {
+    background "url(enlsipomy-t4QIHUv8ge0-unsplash.jpg) no-repeat center center fixed"
+  }
 }
 
 media 'only screen and (max-width: 1268px)', {

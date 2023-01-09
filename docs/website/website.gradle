@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 plugins {
+    id 'groovy'
     id "com.bertramlabs.asset-pipeline" version "3.4.4"
 }
 
@@ -24,28 +25,20 @@ repositories {
 
 dependencies {
     assets "com.bertramlabs.plugins:asset-pipeline-core:$assets_pipeline"
-    assets "com.bertramlabs.plugins:jsx-asset-pipeline:$assets_pipeline"
-    assets "com.bertramlabs.plugins:typescript-asset-pipeline:$assets_pipeline"
-
-    assets project(":groocss")
     assets("com.bertramlabs.plugins:groocss-asset-pipeline:$assets_pipeline") {
         exclude group: "org.groocss", module: "groocss"
     }
 
-    assets("org.webjars.npm:react:18.2.0") {
-        exclude group: 'org.webjars.npm', module: 'loose-envify'
-    }
-    assets("org.webjars.npm:react-dom:18.2.0") {
-        exclude group: 'org.webjars.npm', module: 'loose-envify'
-    }
+    assets project(":groocss")
 }
 
 assets {
-    minifyJs         = true
-    minifyCss        = false
+    minifyJs         = false
+    minifyCss        = true
     enableSourceMaps = false
     maxThreads       = 8
-    configOptions    = [
+
+    configOptions = [
         commonJs: true,
         enableES6: false,
         groocss: [
@@ -55,12 +48,10 @@ assets {
             convertUnderline: false
         ]
     ]
+
     excludes = [
-        'components/*',
-        'layout/*',
-        'custom/*.css',
+        'groocss/*',
         '*.groocss',
-        '**/cjs/*.*',
-        '**/scheduler/**'
+        '**/jquery/**'
     ]
 }
