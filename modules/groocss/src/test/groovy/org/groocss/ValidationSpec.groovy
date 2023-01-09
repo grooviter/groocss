@@ -20,6 +20,16 @@ import org.groocss.valid.RequireMeasurements
 import spock.lang.Specification
 import spock.lang.Unroll
 
+class UnderscoreCase {
+    /**
+     * This method is created to wrap a GrooCSS call which uses a GrooCSS underscore
+     * which conflicts with Spock's underscore if put inside a Specification class.
+     */
+    static GrooCSS executeProcessWithoutConflictingWithSpockUnderscore() {
+        return GrooCSS.process { p { height 10%_ } }
+    }
+}
+
 class ValidationSpec extends Specification {
 
     def "rotate should throw AssertionError for non-angle Measurements"() {
@@ -42,7 +52,8 @@ class ValidationSpec extends Specification {
 
     def "height should not throw AssertionError for percent Measurements"() {
         when:
-        GrooCSS.process { p { height 10%_ } }
+        UnderscoreCase.executeProcessWithoutConflictingWithSpockUnderscore()
+
         then:
         notThrown(AssertionError)
     }

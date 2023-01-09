@@ -32,15 +32,25 @@ apply plugin: "com.gradle.plugin-publish"
 
 dependencies {
     implementation gradleApi()
-    implementation "org.codehaus.groovy:groovy:3.0.0" // <--- should be the same as the project
+    implementation "org.codehaus.groovy:groovy:$groovyVersion" // <--- should be the same as the project
     implementation project(':groocss'), {
         exclude module: "groovy-all", group: "org.codehaus.groovy"
     }
-    testImplementation 'org.spockframework:spock-core:2.2-groovy-2.5', {
+    testImplementation "org.spockframework:spock-core:${getSpockClassifier(groovyVersion)}", {
         exclude module: "groovy-all", group: "org.codehaus.groovy"
     }
     testImplementation "net.bytebuddy:byte-buddy:1.9.13"
     testImplementation "org.objenesis:objenesis:3.0.1"
+}
+
+String getSpockClassifier(String groovyVersion) {
+    if (groovyVersion.startsWith('3.0')) {
+        return '2.3-groovy-3.0'
+    }
+    if (groovyVersion.startsWith('2.5')) {
+        return '2.3-groovy-2.5'
+    }
+    return '2.3-groovy-4.0'
 }
 
 pluginBundle {
@@ -62,3 +72,8 @@ pluginBundle {
 //        pom.artifactId = 'groocss-gradle-plugin'
 //    }
 //}
+
+
+test {
+    useJUnitPlatform()
+}

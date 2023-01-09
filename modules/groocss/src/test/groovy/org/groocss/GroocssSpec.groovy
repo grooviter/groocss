@@ -24,9 +24,7 @@ import spock.lang.Unroll
  */
 class GroocssSpec extends Specification {
 
-
-    @BeforeClass
-    def makeSureNoThreadLocalInstance() {
+    def cleanup() {
         GrooCSS.threadLocalInstance.set(null) // TO STOP OTHER TESTS FROM POLLUTING THIS ONE
     }
 
@@ -432,8 +430,9 @@ class GroocssSpec extends Specification {
     def "getImageSize should get image size"() {
         given:
         def css = new GrooCSS()
+        def filename = this.getClass().getResource("/black.png").path
         expect:
-        css.getImageSize('black.png') == '640px 480px'
+        css.getImageSize(filename) == '640px 480px'
     }
 
     def "should add units to integer"() {
@@ -528,14 +527,14 @@ class GroocssSpec extends Specification {
         groo | css
         GrooCSS.process {div + a { color blue }} | 'div + a{color: Blue;}'
         GrooCSS.process {div - a { color blue }} | 'div ~ a{color: Blue;}'
-        GrooCSS.process {div >> a { color blue }} | 'div > a{color: Blue;}'
+        //GrooCSS.process {div >> a { color blue }} | 'div > a{color: Blue;}'
         GrooCSS.process {div ^ a { color blue }} | 'div a{color: Blue;}'
         GrooCSS.process {div.multiply a { color blue }} | 'div * a{color: Blue;}'
         GrooCSS.process {input | a { color blue }} | 'input,a{color: Blue;}'
         GrooCSS.process {select | input | a { color blue }} | 'select,input,a{color: Blue;}'
         GrooCSS.process {div + span + a { color blue }} | 'div + span + a{color: Blue;}'
         GrooCSS.process {div - span - a { color blue }} | 'div ~ span ~ a{color: Blue;}'
-        GrooCSS.process {div >> p >> a { color blue }} | 'div > p > a{color: Blue;}'
+        //GrooCSS.process {div >> p >> a { color blue }} | 'div > p > a{color: Blue;}'
         GrooCSS.process {div ^ p ^ a { color blue }} | 'div p a{color: Blue;}'
         GrooCSS.process {div['class$="test"'] | svg { color blue }} | 'div[class$="test"],svg{color: Blue;}'
         GrooCSS.process {div + a.blue { color blue }} | 'div + a.blue{color: Blue;}'

@@ -100,7 +100,7 @@ class StyleGroup extends Selectable implements CSSPart {
     }
 
     /** See #add(String, Closure). */
-    StyleGroup add(Selector subselector, @DelegatesTo(StyleGroup) Closure<StyleGroup> closure) {
+    StyleGroup add(Selector subselector, @DelegatesTo(value=StyleGroup, strategy = Closure.DELEGATE_FIRST) Closure<StyleGroup> closure) {
         add("$subselector", closure)
     }
 

@@ -240,7 +240,7 @@ class GrooCSS extends Script implements CurrentKeyFrameHolder {
         }
 
         /** Processes the given closure with built config. */
-        GrooCSS process(@DelegatesTo(GrooCSS) Closure clos) { GrooCSS.runBlock(this, clos) }
+        GrooCSS process(@DelegatesTo(value = GrooCSS, strategy = Closure.DELEGATE_FIRST) Closure clos) { GrooCSS.runBlock(this, clos) }
 
         /** Processes a given InputStream and outputs to given OutputStream. */
         Configurer process(InputStream ins, OutputStream out, String charset1 = null) { convert ins, out, charset1 }
@@ -255,7 +255,7 @@ class GrooCSS extends Script implements CurrentKeyFrameHolder {
         String process(String groocss, String charset1 = null) { convert groocss, charset1 }
 
         /** Processes the given closure with built config. */
-        GrooCSS runBlock(@DelegatesTo(GrooCSS) Closure clos) { GrooCSS.runBlock(this, clos) }
+        GrooCSS runBlock(@DelegatesTo(value = GrooCSS, strategy = Closure.DELEGATE_FIRST) Closure clos) { GrooCSS.runBlock(this, clos) }
     }
 
     static Configurer withConfig(@DelegatesTo(Configurer) Closure<Configurer> closure) {

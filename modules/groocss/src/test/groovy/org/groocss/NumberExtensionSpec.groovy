@@ -14,23 +14,16 @@
  * limitations under the License.
  */
 package org.groocss
-
-import org.junit.After
-import org.junit.Before
 import spock.lang.Specification
 
 class NumberExtensionSpec extends  Specification {
-
-
     GrooCSS gcss
 
-    @Before
-    def initThreadLocal1() {
+    def setup() {
         gcss = new GrooCSS(new Config(addWebkit: false)) // need to do this to set the ThreadLocal value
     }
 
-    @After
-    def nullifyThreadLocal() {
+    def cleanup() {
         GrooCSS.threadLocalInstance.set(null) // so we don't pollute
     }
 
@@ -44,10 +37,11 @@ class NumberExtensionSpec extends  Specification {
     }
 
     def "should create keyframes"() {
-        expect:
+        when:
         gcss.keyframes('showIt') {
             10 % { color 'white' }
         }
+        then:
         gcss.toString().contains "@keyframes showIt {\n10%{color: white;}\n}"
     }
 

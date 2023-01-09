@@ -154,11 +154,16 @@ task pom doFirst {
 }
 
 String getSpockClassifier(String groovyVersion) {
+    if (groovyVersion.startsWith('3.0')) {
+        return '2.3-groovy-3.0'
+    }
     if (groovyVersion.startsWith('2.5')) {
-        return '1.3-groovy-2.5'
+        return '2.3-groovy-2.5'
     }
-    if (groovyVersion.startsWith('2.4')) {
-        return '1.3-groovy-2.4'
-    }
-    return '1.2-groovy-2.5'
+    return '2.3-groovy-4.0'
+}
+
+
+test {
+    useJUnitPlatform()
 }

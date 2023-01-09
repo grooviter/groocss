@@ -18,6 +18,8 @@ package org.groocss
 import spock.lang.Specification
 import spock.lang.Unroll
 
+import java.nio.file.Files
+
 /**
  * Created by adavis on 8/19/16.
  */
@@ -148,11 +150,14 @@ class TranslatorSpec extends Specification {
 
     def "should_translate_file"() {
         given:
-        def inf = new File('index.css')
-        def out = new File('index.groocss')
+        def inf = Files.createTempFile('index', 'css').toFile()
+        def out = Files.createTempFile('index', 'groocss').toFile()
         println inf.absolutePath
         Translator.convertFromCSS(inf, out)
         expect:
         out.exists()
+        cleanup:
+        inf.delete()
+        out.delete()
     }
 }
