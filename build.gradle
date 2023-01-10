@@ -94,3 +94,25 @@ allprojects {
         mavenCentral()
     }
 }
+
+static List<String> snapshots() {
+    return [
+            ':groocss:publishAllPublicationsToSnapshotsRepository',
+            ':groocss-gradle-plugin:publishAllPublicationsToSnapshotsRepository',
+            ':website:gitPublishPush',
+            'jreleaserRelease'
+    ]
+}
+
+static List<String> releases() {
+    return [
+            ':groocss:publish',
+            ':groocss-gradle-plugin:publish',
+            ':website:gitPublishPush',
+            'jreleaserFullRelease'
+    ]
+}
+
+task release() {
+    dependsOn(version.endsWith('SNAPSHOT') ? snapshots() : releases())
+}
