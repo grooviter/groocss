@@ -27,15 +27,20 @@ config {
         description = 'Code CSS in Groovy'
 
         links {
-            website      = 'http://www.groocss.org'
-            issueTracker = 'https://github.com/adamldavis/groocss/issues'
-            scm          = 'https://github.com/adamldavis/groocss.git'
+            website      = 'https://grooviter.github.io/groocss/'
+            issueTracker = 'https://github.com/grooviter/groocss/issues'
+            scm          = 'https://github.com/grooviter/groocss.git'
         }
         people {
             person {
                 id    = 'adamldavis'
                 name  = 'Adam L. Davis'
                 email = 'adamd@adamldavis.com'
+                roles = ['developer']
+            }
+            person {
+                id    = "mariogarcia"
+                name  = "Mario Garcia"
                 roles = ['developer']
             }
         }

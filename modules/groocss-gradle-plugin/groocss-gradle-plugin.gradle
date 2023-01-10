@@ -32,47 +32,29 @@ apply plugin: "com.gradle.plugin-publish"
 
 dependencies {
     implementation gradleApi()
-    implementation "org.codehaus.groovy:groovy:$groovyVersion" // <--- should be the same as the project
+    implementation "org.codehaus.groovy:groovy:$groovyVersion"
     implementation project(':groocss'), {
         exclude module: "groovy-all", group: "org.codehaus.groovy"
     }
-    testImplementation "org.spockframework:spock-core:${getSpockClassifier(groovyVersion)}", {
-        exclude module: "groovy-all", group: "org.codehaus.groovy"
-    }
+    testImplementation "org.spockframework:spock-core:$spockframework"
     testImplementation "net.bytebuddy:byte-buddy:1.9.13"
     testImplementation "org.objenesis:objenesis:3.0.1"
 }
 
-String getSpockClassifier(String groovyVersion) {
-    if (groovyVersion.startsWith('3.0')) {
-        return '2.3-groovy-3.0'
-    }
-    if (groovyVersion.startsWith('2.5')) {
-        return '2.3-groovy-2.5'
-    }
-    return '2.3-groovy-4.0'
-}
-
 pluginBundle {
-    website = 'http://www.groocss.org/'
-    vcsUrl = 'https://github.com/adamldavis/groocss'
+    website = 'https://grooviter.github.io/groocss/'
+    vcsUrl = 'https://github.com/grooviter/groocss'
     tags = ['css', 'web', 'html', 'groocss']
 
     plugins {
         groocssPlugin {
-            id = 'org.groocss.groocss-gradle-plugin'
+            id = 'com.github.grooviter.groocss-gradle-plugin'
             displayName = 'GrooCSS Gradle Plugin'
             description = 'This plugin provides build time integration for converting GrooCSS DSL into CSS.'
             tags = ['groovy', 'css', 'web', 'html', 'groocss']
         }
     }
 }
-//install {
-//    repositories.mavenInstaller {
-//        pom.artifactId = 'groocss-gradle-plugin'
-//    }
-//}
-
 
 test {
     useJUnitPlatform()

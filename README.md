@@ -4,11 +4,31 @@
 ![Gradle Plugin Portal](https://img.shields.io/gradle-plugin-portal/v/org.groocss.groocss-gradle-plugin)
 
 # GrooCSS
-[GrooCSS](http://groocss.org) lets you code your CSS in Groovy, using a natural Groovy DSL.
+[GrooCSS](https://grooviter.github.io/groocss/) lets you code your CSS in Groovy, using a natural Groovy DSL.
+
+- DSL similar to CSS but with camel-case and some modifications to make it valid Groovy code.
+- Keyframes, media, charset, and font-face support.
+- Automatically adds -webkit, -ms, -moz, -o extensions! (configurable)
+- Color support with rgb, rgba, hex, named colors
+- Several color changing methods (mix, tint, shade, saturate, etc.)
+- Minimization (compress)
+- Support for transforms directly (transformX, etc),
+- Math functions (sqrt, sin, cos, toRadians, etc.) and built-in Measurement math.
+- Unit methods (unit, getUnit, convert)
+- Ability to extend style-groups and add internal groups.
+- Pseudo-classes in DSL (nthChild, etc.)
+- Multiple ways to configure: Config.builder() or using withConfig
+- Translator to convert from existing CSS.
+- Available pretty print (using Config)
+- Ability to create and reuse groups of styles using styles{} syntax.
+- Methods for getting an image's width, height, or size.
+- Validates some values by default and can be configured with custom validators and/or processors.
+
+This project is a fork of the original [GrooCSS by Adam L. Davis](https://github.com/adamldavis/groocss)
 
 ## Documentation
 
-Check out the [website](http://www.groocss.org/) for more info.
+Check out the [website](https://grooviter.github.io/groocss/) for more info.
 
 ## How to contribute
 
