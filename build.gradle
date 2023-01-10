@@ -1,5 +1,5 @@
 /*
- * Copyright [2016] [Adam L. Davis]
+ * Copyright 2016-2023 The GrooCSS authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,9 +22,10 @@ config {
     release = !version.endsWith('SNAPSHOT')
 
     info {
-        name        = 'GrooCSS'
-        vendor      = 'GrooCSS'
-        description = 'Code CSS in Groovy'
+        name          = 'GrooCSS'
+        vendor        = 'GrooCSS'
+        description   = 'Code CSS in Groovy'
+        inceptionYear = "2016"
 
         links {
             website      = 'https://grooviter.github.io/groocss/'
@@ -91,26 +92,5 @@ subprojects {
 allprojects {
     repositories {
         mavenCentral()
-    }
-}
-
-task generateSite {
-    dependsOn(
-        "clean",
-        ":groocss:groovydoc",
-        ":guide:asciidoctor",
-        ":website:assetClean",
-        ":website:assetCompile"
-    )
-
-    doLast {
-        copy {
-            from "$rootDir/docs/guide/build/docs/asciidoc"
-            into "$rootDir/docs/website/build/assets/guide"
-        }
-        copy {
-            from "$rootDir/modules/groocss/build/docs/groovydoc"
-            into "$rootDir/docs/website/build/assets/api"
-        }
     }
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright [2016] [Adam L. Davis]
+ * Copyright 2016-2023 The GrooCSS authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,6 +16,7 @@
 plugins {
     id 'groovy'
     id "com.bertramlabs.asset-pipeline" version "3.4.4"
+    id 'org.ajoberstar.git-publish'
 }
 
 repositories {
@@ -54,4 +55,40 @@ assets {
         '*.groocss',
         '**/jquery/**'
     ]
+}
+
+gitPublish {
+    repoUri       = 'https://github.com/grooviter/groocss.git'
+    branch        = 'gh-pages'
+    commitMessage = "Released version $version"
+
+    contents {
+        from file('build/assets')
+        duplicatesStrategy DuplicatesStrategy.INCLUDE
+    }
+}
+
+gitPublishPush {
+    dependsOn 'setAuthentication'
+    dependsOn 'generateSite'
+}
+
+task generateSite {
+    dependsOn("clean", ":groocss:groovydoc", ":guide:asciidoctor", ":website:assetClean", ":website:assetCompile")
+    doLast {
+        copy {
+            from "$rootDir/docs/guide/build/docs/asciidoc"
+            into "$rootDir/docs/website/build/assets/guide"
+        }
+        copy {
+            from "$rootDir/modules/groocss/build/docs/groovydoc"
+            into "$rootDir/docs/website/build/assets/api"
+        }
+    }
+}
+
+task setAuthentication(dependsOn: 'generateSite') {
+    doLast {
+        System.setProperty('org.ajoberstar.grgit.auth.username', findProperty('PUBLISH_GH_TOKEN'))
+    }
 }
