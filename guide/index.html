@@ -1,0 +1,1590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.10">
+<title>GrooCSS</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
+<link rel="stylesheet" href="./asciidoctor.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body class="book toc2 toc-left">
+<div id="header">
+<h1>GrooCSS</h1>
+<div class="details">
+<span id="revnumber">version 1.0.0-SNAPSHOT</span>
+</div>
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_introduction">1. Introduction</a>
+<ul class="sectlevel2">
+<li><a href="#_main_features">1.1. Main features</a></li>
+<li><a href="#_how_to_learn_groocss">1.2. How to Learn GrooCSS</a></li>
+<li><a href="#_requirements">1.3. Requirements</a></li>
+<li><a href="#_groovy_script">1.4. Groovy Script</a></li>
+<li><a href="#_using_gradle_without_plugin">1.5. Using Gradle without Plugin</a></li>
+</ul>
+</li>
+<li><a href="#_gradle_plugin">2. Gradle Plugin</a></li>
+<li><a href="#_measurements_and_math">3. Measurements and math</a></li>
+<li><a href="#_configuration">4. Configuration</a>
+<ul class="sectlevel2">
+<li><a href="#_config">4.1. Config</a></li>
+<li><a href="#_properties">4.2. Properties</a></li>
+</ul>
+</li>
+<li><a href="#_colors_and_images">5. Colors and Images</a>
+<ul class="sectlevel2">
+<li><a href="#_colors">5.1. Colors</a></li>
+<li><a href="#_image_methods">5.2. Image Methods</a></li>
+</ul>
+</li>
+<li><a href="#_extending_and_nesting">6. Extending and Nesting</a>
+<ul class="sectlevel2">
+<li><a href="#_extending">6.1. Extending</a></li>
+<li><a href="#_nesting">6.2. Nesting</a></li>
+</ul>
+</li>
+<li><a href="#_pseudo_classes">7. Pseudo-classes</a>
+<ul class="sectlevel2">
+<li><a href="#_pseudo_elements">7.1. Pseudo Elements</a></li>
+<li><a href="#_pseudo_classes_2">7.2. Pseudo Classes</a></li>
+</ul>
+</li>
+<li><a href="#_keyframes_transitions_and_transforms_dsl">8. Keyframes, Transitions, and Transforms DSL</a>
+<ul class="sectlevel2">
+<li><a href="#_keyframes">8.1. Keyframes</a></li>
+<li><a href="#_transitions">8.2. Transitions</a></li>
+</ul>
+</li>
+<li><a href="#_importing">9. Importing</a>
+<ul class="sectlevel2">
+<li><a href="#_variants">9.1. Variants</a></li>
+<li><a href="#_importing_with_gradle">9.2. Importing with Gradle</a>
+<ul class="sectlevel3">
+<li><a href="#_root_build">9.2.1. Root Build</a></li>
+<li><a href="#_main">9.2.2. Main</a></li>
+<li><a href="#_imports_build">9.2.3. Imports Build</a></li>
+<li><a href="#_importing_from_classpath">9.2.4. Importing From Classpath</a></li>
+<li><a href="#_run_the_build">9.2.5. Run the Build</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_font_face">10. Font-face</a></li>
+<li><a href="#_media">11. Media</a></li>
+<li><a href="#_custom_styles">12. Custom styles</a></li>
+<li><a href="#_detached_styles">13. Detached Styles</a></li>
+<li><a href="#_migrating_from_css_in_a_legacy_application">14. Migrating from CSS in a Legacy Application</a>
+<ul class="sectlevel2">
+<li><a href="#_translating">14.1. Translating</a></li>
+<li><a href="#_building">14.2. Building</a></li>
+<li><a href="#_verifying_conversion">14.3. Verifying Conversion</a></li>
+</ul>
+</li>
+<li><a href="#_processors">15. Processors</a>
+<ul class="sectlevel2">
+<li><a href="#_conversion">15.1. Conversion</a></li>
+<li><a href="#_validation">15.2. Validation</a></li>
+<li><a href="#_defaultvalidator_and_requiremeasurements">15.3. DefaultValidator and RequireMeasurements</a></li>
+<li><a href="#_extensions">15.4. Extensions</a></li>
+<li><a href="#_using_processors">15.5. Using Processors</a></li>
+</ul>
+</li>
+<li><a href="#_micronaut_exampleasset_pipeline">16. Micronaut Example/Asset-pipeline</a></li>
+<li><a href="#_staticcode_completion">17. Static/Code Completion</a>
+<ul class="sectlevel2">
+<li><a href="#_set_up_your_ide">17.1. Set Up Your IDE</a></li>
+<li><a href="#_root_groocss">17.2. Root GrooCSS</a></li>
+<li><a href="#_allowed_static_code">17.3. Allowed Static Code</a>
+<ul class="sectlevel3">
+<li><a href="#_allowed">17.3.1. Allowed</a></li>
+<li><a href="#_not_allowed">17.3.2. Not Allowed</a></li>
+</ul>
+</li>
+<li><a href="#_conclusion">17.4. Conclusion</a></li>
+</ul>
+</li>
+<li><a href="#_variables">18. Variables</a></li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div id="preamble">
+<div class="sectionbody">
+<div class="imageblock text-center">
+<div class="content">
+<img src="/home/mario/Development/repositories/groocss/docs/guide/src/docs/asciidoc/images/groocss2_256.png" alt="groocss2 256">
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<strong>GrooCSS</strong> lets you code your CSS in Groovy, using a natural Groovy DSL with optional code completion
+</blockquote>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_introduction"><a class="anchor" href="#_introduction"></a>1. Introduction</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>It was created by Adam L. Davis (<a href="https://github.com/adamldavis">@adamldavis</a>) and inspired by the many other Groovy-based projects out there, like
+<a href="https://gradle.org">Gradle</a>, <a href="https://grails.org/">Grails</a>,
+<a href="https://github.com/spockframework/spock">Spock</a>, <a href="https://ratpack.io/">Ratpack</a>, and <a href="http://grooscript.org/">Grooscript</a>.</p>
+</div>
+<div class="sect2">
+<h3 id="_main_features"><a class="anchor" href="#_main_features"></a>1.1. Main features</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>DSL similar to CSS but with camel-case and some modifications to make it valid Groovy.</p>
+</li>
+<li>
+<p>Keyframes, media, charset, and font-face support.</p>
+</li>
+<li>
+<p>Automatically adds -webkit, -ms, -moz, -o extensions! (configurable)</p>
+</li>
+<li>
+<p>Color support with rgb, rgba, hex, named colors, and several color changing methods (mix, tint, shade, saturate, etc.)</p>
+</li>
+<li>
+<p>Minimization (compress)</p>
+</li>
+<li>
+<p>Support for transforms directly (transformX, etc),</p>
+</li>
+<li>
+<p>Math functions (sqrt, sin, cos, toRadians, etc.) and built-in Measurement math.</p>
+</li>
+<li>
+<p>Unit methods (unit, getUnit, convert)</p>
+</li>
+<li>
+<p>Ability to extend style-groups and add internal groups.</p>
+</li>
+<li>
+<p>Pseudo-classes in DSL (nthChild, etc.)</p>
+</li>
+<li>
+<p>Multiple ways to configure: Config.builder() or using withConfig</p>
+</li>
+<li>
+<p>Close to CSS syntax using getAt, putAt, operator-overloading, underscore, methodMissing, and propertyMissing</p>
+</li>
+<li>
+<p>Translator to convert from existing CSS.</p>
+</li>
+<li>
+<p>Available pretty print (using Config)</p>
+</li>
+<li>
+<p>Ability to create and reuse groups of styles using styles{} syntax.</p>
+</li>
+<li>
+<p>Methods for getting an image&#8217;s width, height, or size.</p>
+</li>
+<li>
+<p>Validates some values by default and can be configured with custom validators and/or processors.</p>
+</li>
+<li>
+<p>Uses Groovy extension modules</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_how_to_learn_groocss"><a class="anchor" href="#_how_to_learn_groocss"></a>1.2. How to Learn GrooCSS</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Make sure you have the requirements installed.</p>
+</li>
+<li>
+<p>See below for a simple example using a Groovy script.</p>
+</li>
+<li>
+<p>Read about the Gradle Plugin.</p>
+</li>
+<li>
+<p>Read the whole manual to learn about all the features.</p>
+</li>
+<li>
+<p>Follow me on Twitter.</p>
+</li>
+<li>
+<p>Star me on github.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_requirements"><a class="anchor" href="#_requirements"></a>1.3. Requirements</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>JDK 8+</p>
+</li>
+<li>
+<p>Groovy 2.5+ (or 2.4+ if using 1.0-RC1-groovy2.4)</p>
+</li>
+<li>
+<p>Gradle 5.x (or 4.8+ if using 1.0-RC1-groovy2.4)</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_groovy_script"><a class="anchor" href="#_groovy_script"></a>1.4. Groovy Script</h3>
+<div class="paragraph">
+<p>This example uses Groovy’s @Grab annotation to import GrooCSS. Create a file named "makeCss.groovy" with the following code:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="annotation">@Grab</span>(<span class="string"><span class="delimiter">'</span><span class="content">org.groocss:groocss:1.0-RC1</span><span class="delimiter">'</span></span>)
+<span class="keyword">import</span> <span class="include">org.groocss.GrooCSS</span>
+<span class="comment">// demo</span>
+<span class="keyword">def</span> css = GrooCSS.withConfig { prettyPrint() }.process {
+    a { textDecoration <span class="string"><span class="delimiter">'</span><span class="content">none</span><span class="delimiter">'</span></span> }
+    body _.content {
+        fontSize <span class="integer">20</span>.px
+        width <span class="integer">400</span>.px
+        display <span class="string"><span class="delimiter">'</span><span class="content">flex</span><span class="delimiter">'</span></span>
+    }
+}.writeTo(<span class="keyword">new</span> <span class="predefined-type">File</span>(<span class="string"><span class="delimiter">'</span><span class="content">main</span><span class="delimiter">'</span></span>))</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Although not recommended, this code would create CSS from the given DSL. Invoke "groovy makeCss.groovy" at the command line to run it. It would output in "main.css" the following:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="css"><span class="tag">a</span> {
+    <span class="key">text-decoration</span>: <span class="value">none</span>;
+}
+<span class="tag">body</span> <span class="class">.content</span> {
+    <span class="key">font-size</span>: <span class="float">20px</span>;
+    <span class="key">width</span>: <span class="float">400px</span>;
+    <span class="key">display</span>: <span class="value">flex</span>;
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_using_gradle_without_plugin"><a class="anchor" href="#_using_gradle_without_plugin"></a>1.5. Using Gradle without Plugin</h3>
+<div class="paragraph">
+<p>I recommend you use GrooCSS with either the Gradle plugin or asset-pipeline, but it can be used by itself.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="keyword">import</span> <span class="include">org.groocss.GrooCSS</span>
+<span class="comment">//</span>
+buildscript {
+    repositories { jcenter() }
+    dependencies { classpath <span class="string"><span class="delimiter">'</span><span class="content">org.groocss:groocss:1.0-RC1-groovy2.5</span><span class="delimiter">'</span></span> }
+}
+task css doLast {
+    <span class="keyword">def</span> file = file(<span class="string"><span class="delimiter">'</span><span class="content">css/out.css</span><span class="delimiter">'</span></span>)
+    GrooCSS.process {
+        <span class="comment">// DSL goes here</span>
+    }.writeTo(file)
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Or using "convert" methods:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy">GrooCSS.convertFile(<span class="string"><span class="delimiter">'</span><span class="content">infile.groocss</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">outfile.css</span><span class="delimiter">'</span></span>)
+<span class="comment">//or</span>
+GrooCSS.convert(<span class="keyword">new</span> <span class="predefined-type">File</span>(<span class="string"><span class="delimiter">'</span><span class="content">in</span><span class="delimiter">'</span></span>), <span class="keyword">new</span> <span class="predefined-type">File</span>(<span class="string"><span class="delimiter">'</span><span class="content">out</span><span class="delimiter">'</span></span>))</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_gradle_plugin"><a class="anchor" href="#_gradle_plugin"></a>2. Gradle Plugin</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>There&#8217;s a GroocssTask available that extends Gradle&#8217;s CopyTask to give you finer-grained control of how to convert your files. Here&#8217;s an example using a task:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy">plugins {
+    id <span class="string"><span class="delimiter">&quot;</span><span class="content">org.groocss.groocss-gradle-plugin</span><span class="delimiter">&quot;</span></span> version <span class="string"><span class="delimiter">&quot;</span><span class="content">1.0-RC1-groovy2.5</span><span class="delimiter">&quot;</span></span>
+}
+
+<span class="keyword">def</span> cssDir = <span class="string"><span class="delimiter">&quot;</span><span class="inline"><span class="inline-delimiter">$</span>parent</span><span class="content">.buildDir/../www/css</span><span class="delimiter">&quot;</span></span>
+
+task css(<span class="key">type</span>: org.groocss.GroocssTask, <span class="key">dependsOn</span>: convertCss) {
+    conf = <span class="keyword">new</span> org.groocss.Config(<span class="key">compress</span>: <span class="predefined-constant">true</span>, <span class="key">addOpera</span>: <span class="predefined-constant">false</span>)
+    from <span class="string"><span class="delimiter">'</span><span class="content">index.groocss</span><span class="delimiter">'</span></span>
+    into <span class="string"><span class="delimiter">&quot;</span><span class="inline"><span class="inline-delimiter">$</span>cssDir</span><span class="content">/index.css.min</span><span class="delimiter">&quot;</span></span>
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To process multiple files from and into can be directories (it will assume groocss files end in .groovy or .groocss). For example, files ending in .css.groovy will be converted to files ending in .css.
+See this page for more about Config.</p>
+</div>
+<div class="paragraph">
+<p>Using Gradle 4 or later you can use the "-t" command line option to continuously update your files. In other words, every time you change a .css.groovy file it will be automatically converted to a css file.</p>
+</div>
+<div class="paragraph">
+<p>See learning-groovy for a working example (subproject2).</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_measurements_and_math"><a class="anchor" href="#_measurements_and_math"></a>3. Measurements and math</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Built into GrooCSS is the ability to do math with any compatiable Measurement types.</p>
+</div>
+<div class="paragraph">
+<p>A Measurement is created by a number "." type notation (see below).
+Measurement Math</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="keyword">def</span> myWidth = <span class="integer">100</span>.pt + <span class="integer">1</span>.in <span class="comment">// converts to pt</span>
+<span class="keyword">def</span> myDelay = <span class="integer">100</span>.ms + <span class="integer">1</span>.s     <span class="comment">// converts to ms</span>
+<span class="keyword">def</span> mySize = myWidth / <span class="integer">2</span>    <span class="comment">// you can multiply/divide with any number</span>
+<span class="keyword">def</span> doubleSize = myWidth * <span class="integer">2</span></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_configuration"><a class="anchor" href="#_configuration"></a>4. Configuration</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_config"><a class="anchor" href="#_config"></a>4.1. Config</h3>
+<div class="paragraph">
+<p>There are several different ways to configure GrooCSS:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Using the groovy constructor</strong>: <code>new Config(compress: true)</code></p>
+</li>
+<li>
+<p><strong>Using the builder syntax</strong>: <code>Config.builder().compress(true).build()</code></p>
+</li>
+<li>
+<p><strong>Using the DSL</strong>: <code>GrooCSS.withConfig { noExts().compress().utf8() }.process {}</code></p>
+</li>
+<li>
+<p>Properties</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Of these options, the third is most recommended. With the DSL there are several chainable methods available to easily configure your CSS:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>noExts()</code> - sets all extension flags to false (addOpera, etc.)</p>
+</li>
+<li>
+<p><code>onlyMs()</code>, onlyWebkit(), etc. - sets all extensions flags to false except one.</p>
+</li>
+<li>
+<p><code>utf8()</code> - sets the charset to UTF-8.</p>
+</li>
+<li>
+<p><code>compress()</code> - sets compress flag to true.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_properties"><a class="anchor" href="#_properties"></a>4.2. Properties</h3>
+<div class="paragraph">
+<p>You can also use a Properties file to define Config. For example create a file named "groocss.properties" with the following content (true/TRUE/yes/t are all considered true):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="properties">addMoz=false
+compress=true
+variable.baseUrl=http://mywebsite.com/assets/</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Anything that starts with "variable." will use the rest of the key ("baseUrl" above) as the name of variable and set the given value to it. See more about variables here.</p>
+</div>
+<div class="paragraph">
+<p>It allows the property "processorClasses" to be a list of class-names separated by commas for Processors to use and "styleClasses" can be a comma separated list of styleClasses.</p>
+</div>
+<div class="paragraph">
+<p>Or with the Gradle plugin you can use propertiesFile = file("groocss.properties") within the task definition.
+Compressing (Minimization)</p>
+</div>
+<div class="paragraph">
+<p>To "compress" the output (no new-lines), just pass in a Config object:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy">GrooCSS.process(<span class="keyword">new</span> Config(<span class="key">compress</span>: <span class="predefined-constant">true</span>))
+<span class="comment">//OR</span>
+GrooCSS.convert(<span class="keyword">new</span> Config(<span class="key">compress</span>: <span class="predefined-constant">true</span>), infile, outfile)
+<span class="comment">//OR</span>
+groocss { compress = <span class="predefined-constant">true</span> } <span class="comment">// using Gradle plugin</span></code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_colors_and_images"><a class="anchor" href="#_colors_and_images"></a>5. Colors and Images</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_colors"><a class="anchor" href="#_colors"></a>5.1. Colors</h3>
+<div class="paragraph">
+<p>Use the "c", "clr", "rgb" or "rgba" methods to create a color. For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="keyword">def</span> css = GrooCSS.process {
+    <span class="keyword">def</span> sea = c(<span class="string"><span class="delimiter">'</span><span class="content">5512ab</span><span class="delimiter">'</span></span>) <span class="comment">//OR rgb(85, 18, 171)</span>
+    _.sea {
+        color darken(sea)
+        background sea.brighter()
+        border <span class="string"><span class="delimiter">&quot;</span><span class="content">5px solid </span><span class="inline"><span class="inline-delimiter">${</span>sea.alpha(<span class="float">0.5</span>)<span class="inline-delimiter">}</span></span><span class="delimiter">&quot;</span></span>
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>See the javadoc for all available methods.</p>
+</div>
+<div class="paragraph">
+<p>You can also use named colors:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy">_.blue {
+    color darkBlue
+    background aliceBlue
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_image_methods"><a class="anchor" href="#_image_methods"></a>5.2. Image Methods</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Measurement getImageHeight(String filename): Gets the height of an image.</p>
+</li>
+<li>
+<p>String getImageSize(String filename): Gets the size of an image.</p>
+</li>
+<li>
+<p>Measurement getImageWidth(String filename): Gets the width of an image.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_extending_and_nesting"><a class="anchor" href="#_extending_and_nesting"></a>6. Extending and Nesting</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_extending"><a class="anchor" href="#_extending"></a>6.1. Extending</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy">_.warn { color red }
+_.error {
+    extend(_.warn) <span class="comment">// extend '.warn' also works</span>
+    background black
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Produces:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="css"><span class="class">.warn</span>,<span class="class">.error</span> {<span class="key">color</span>: <span class="value">Red</span>;}
+<span class="class">.error</span> {<span class="key">background</span>: <span class="value">Black</span>;}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_nesting"><a class="anchor" href="#_nesting"></a>6.2. Nesting</h3>
+<div class="paragraph">
+<p>Nesting allows you to define modifications to a style (such as pseudo-classes additions to a selector) within the same block. For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy">a {
+    color <span class="string"><span class="delimiter">'</span><span class="content">#000</span><span class="delimiter">'</span></span>
+    add <span class="string"><span class="delimiter">'</span><span class="content">:hover</span><span class="delimiter">'</span></span>, { color blue }
+}
+div {
+    add <span class="string"><span class="delimiter">'</span><span class="content">&gt; p</span><span class="delimiter">'</span></span>, { color <span class="string"><span class="delimiter">'</span><span class="content">#eee</span><span class="delimiter">'</span></span> }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Produces:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="css"><span class="tag">a</span> { <span class="key">color</span>: <span class="color">#000</span>; }
+<span class="tag">a</span><span class="pseudo-class">:hover</span> { <span class="key">color</span>: <span class="value">Blue</span>; }
+<span class="tag">div</span> &gt; <span class="tag">p</span> { <span class="key">color</span>: <span class="color">#eee</span>; }</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_pseudo_classes"><a class="anchor" href="#_pseudo_classes"></a>7. Pseudo-classes</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_pseudo_elements"><a class="anchor" href="#_pseudo_elements"></a>7.1. Pseudo Elements</h3>
+<div class="paragraph">
+<p>Pseudo elements are things like ::before, ::after, ::first-line, etc.</p>
+</div>
+<div class="paragraph">
+<p>They can be added using the ** syntax. Eg:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy">input ** before { content <span class="string"><span class="delimiter">'</span><span class="content">===</span><span class="delimiter">'</span></span> }
+p ** firstLine { fontSize <span class="integer">2</span>.em }</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_pseudo_classes_2"><a class="anchor" href="#_pseudo_classes_2"></a>7.2. Pseudo Classes</h3>
+<div class="paragraph">
+<p>CSS Pseudo-classes such as :hover, :active, :nth-child, etc.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy">input % hover { color blue }
+li % nthChild(<span class="string"><span class="delimiter">'</span><span class="content">3n</span><span class="delimiter">'</span></span>) { color blue }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Produces:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="css"><span class="tag">input</span><span class="pseudo-class">:hover</span> { <span class="key">color</span>: <span class="value">Blue</span>; }
+<span class="tag">li</span><span class="pseudo-class">:nth-child</span>(<span class="float">3n</span>) { <span class="key">color</span>: <span class="value">Blue</span>; }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>There are also shorthands like 'odd' and 'even':</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy">li % odd { color blue }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Produces:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="css"><span class="tag">li</span><span class="pseudo-class">:nth-child</span>(<span class="tag">odd</span>) { <span class="key">color</span>: <span class="value">Blue</span>; }</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_keyframes_transitions_and_transforms_dsl"><a class="anchor" href="#_keyframes_transitions_and_transforms_dsl"></a>8. Keyframes, Transitions, and Transforms DSL</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_keyframes"><a class="anchor" href="#_keyframes"></a>8.1. Keyframes</h3>
+<div class="paragraph">
+<p>GrooCSS includes support for @Keyframes, Transitions, and transforms (like translateX).
+Keyframes</p>
+</div>
+<div class="paragraph">
+<p>You create keyframes in GrooCSS using the keyframes(selector, Closure) method (there’s also a "kf" alias).</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="keyword">def</span> css = GrooCSS.process(<span class="keyword">new</span> Config(<span class="key">addWebkit</span>: <span class="predefined-constant">false</span>, <span class="key">addMoz</span>: <span class="predefined-constant">false</span>, <span class="key">addOpera</span>: <span class="predefined-constant">false</span>)) {
+    keyframes(<span class="string"><span class="delimiter">'</span><span class="content">bounce</span><span class="delimiter">'</span></span>) {
+        <span class="integer">40</span> % { translateY(-<span class="integer">30</span>.px) }
+        <span class="integer">60</span> % { translateY(-<span class="integer">15</span>.px) }
+        frame([<span class="integer">0</span>,<span class="integer">20</span>,<span class="integer">50</span>,<span class="integer">80</span>,<span class="integer">100</span>]) {
+            translateY(<span class="integer">0</span>)
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Produces:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="css"><span class="directive">@keyframes</span> <span class="tag">bounce</span> {
+    <span class="float">40%</span>{<span class="key">transform</span>: <span class="error">t</span><span class="error">r</span><span class="error">a</span><span class="error">n</span><span class="error">s</span><span class="error">l</span><span class="error">a</span><span class="error">t</span><span class="error">e</span><span class="error">Y</span>(<span class="float">-30px</span>);}
+    <span class="float">60%</span>{<span class="key">transform</span>: <span class="error">t</span><span class="error">r</span><span class="error">a</span><span class="error">n</span><span class="error">s</span><span class="error">l</span><span class="error">a</span><span class="error">t</span><span class="error">e</span><span class="error">Y</span>(<span class="float">-15px</span>);}
+    <span class="float">0%</span>, <span class="float">20%</span>, <span class="float">50%</span>, <span class="float">80%</span>, <span class="float">100%</span>{<span class="key">transform</span>: <span class="error">t</span><span class="error">r</span><span class="error">a</span><span class="error">n</span><span class="error">s</span><span class="error">l</span><span class="error">a</span><span class="error">t</span><span class="error">e</span><span class="error">Y</span>(<span class="float">0</span>);}
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_transitions"><a class="anchor" href="#_transitions"></a>8.2. Transitions</h3>
+<div class="paragraph">
+<p>Transitions are supported like any normal style property OR with a special DSL which takes a Closure (or multiple Closures).</p>
+</div>
+<div class="paragraph">
+<p>For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy">a%hover {
+    transition { all <span class="integer">1</span>.s }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This would transition all properties that are changed for a:hover over 1 second.</p>
+</div>
+<div class="paragraph">
+<p>If you want to supply the easing function, you can. Since command chains in Groovy require pairs to work (a method call and a value) you also need to provide the "delay" value (which can be zero). For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy">a%hover {
+    transition { all <span class="integer">1</span>.s ease <span class="integer">0</span> }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can also supply multiple closure to support multiple transition values, eg:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy">a%hover {
+    transition { color <span class="integer">1</span>.s ease <span class="integer">0</span> } { background <span class="integer">2</span>.s }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The correct CSS will be output.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_importing"><a class="anchor" href="#_importing"></a>9. Importing</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The ability to import other groocss files is supported by importFile, importStream, and importString methods which take a parameter map and input. Any number of variables can be passed. For example:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>def otherCss = new File('whatever/file.groovy')
+importFile otherCss.absoluteFile, linkColor: '#456789', backColor: 'black'</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Within the imported groovy file, linkColor and background will be available with the given values.</p>
+</div>
+<div class="paragraph">
+<p>For example, given that "file.groovy" has the following contents:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>a { color linkColor backgroundColor backColor }</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The resulting CSS would be the following:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>a {
+    color #456789;
+    background-color: Black;
+}</pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_variants"><a class="anchor" href="#_variants"></a>9.1. Variants</h3>
+<div class="literalblock">
+<div class="content">
+<pre>importFile - Takes in a java.io.File.</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>importStream - Takes an InputStream and reads it.</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>importString - Takes a String expected to be a GrooCSS DSL input.</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For example, to read a file named "other.css.groovy" on the classpath (under /groocss/) do the following:</p>
+</div>
+<div class="paragraph">
+<p>importStream(getClass().getResourceAsStream("/groocss/other.css.groovy"),
+linkColor: '#456789', backColor: 'black')</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_importing_with_gradle"><a class="anchor" href="#_importing_with_gradle"></a>9.2. Importing with Gradle</h3>
+<div class="paragraph">
+<p>However, you might not always know what directory to look in for files. If you want to import files using the classpath method, you should follow some additional steps (for a multi-module Gradle build):</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Create a "src/css/groovy" and "imports/css/groocss" and tell your IDE these are also source folders.</p>
+</li>
+<li>
+<p>Create a Main.groovy under "src/css/groovy/groovycss"</p>
+</li>
+<li>
+<p>Create a "build.gradle" file in the current directory.</p>
+</li>
+<li>
+<p>Create a "settings.gradle" file in the current directory with the contents: include 'imports'</p>
+</li>
+<li>
+<p>Create a "build.gradle" file in the "imports/" directory.</p>
+</li>
+<li>
+<p>Create a Groocss file at "imports/css/groocss/elements/a.css.groovy".</p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="_root_build"><a class="anchor" href="#_root_build"></a>9.2.1. Root Build</h4>
+<div class="paragraph">
+<p>Put the following in /build.gradle:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy">plugins {
+    id <span class="string"><span class="delimiter">'</span><span class="content">groovy</span><span class="delimiter">'</span></span>
+    id <span class="string"><span class="delimiter">'</span><span class="content">application</span><span class="delimiter">'</span></span>
+}
+mainClassName = <span class="string"><span class="delimiter">'</span><span class="content">groovycss.Main</span><span class="delimiter">'</span></span>
+
+repositories { jcenter() }
+
+sourceSets {
+    main {
+        groovy.srcDirs += [<span class="string"><span class="delimiter">&quot;</span><span class="inline"><span class="inline-delimiter">$</span>projectDir</span><span class="content">/src/css/groovy</span><span class="delimiter">&quot;</span></span>]
+    }
+}
+
+dependencies {
+    compile <span class="string"><span class="delimiter">&quot;</span><span class="content">org.groocss:groocss:1.0-RC1-groovy2.5</span><span class="delimiter">&quot;</span></span>
+    runtime project(<span class="string"><span class="delimiter">'</span><span class="content">:imports</span><span class="delimiter">'</span></span>)
+}
+
+task css(
+    <span class="key">dependsOn</span>: [<span class="string"><span class="delimiter">'</span><span class="content">compileGroovy</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">:imports:build</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">run</span><span class="delimiter">'</span></span>],
+    <span class="key">description</span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">--&gt; Converts GrooCSS to CSS files</span><span class="delimiter">&quot;</span></span>,
+    <span class="key">group</span>: <span class="string"><span class="delimiter">'</span><span class="content">build</span><span class="delimiter">'</span></span>
+) {
+    doFirst {
+        <span class="keyword">def</span> outputDir = <span class="string"><span class="delimiter">&quot;</span><span class="inline"><span class="inline-delimiter">${</span>dir<span class="inline-delimiter">}</span></span><span class="content">/resources/css/</span><span class="delimiter">&quot;</span></span>
+        file(outputDir).mkdirs()
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_main"><a class="anchor" href="#_main"></a>9.2.2. Main</h4>
+<div class="paragraph">
+<p>In "Main.groovy" put the following:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="keyword">package</span> groovycss
+<span class="keyword">import</span> <span class="include">groovy.transform.CompileStatic</span>
+<span class="keyword">import</span> <span class="include">org.groocss.*</span>
+
+<span class="annotation">@CompileStatic</span>
+<span class="type">class</span> <span class="class">Main</span> {
+    <span class="directive">static</span> <span class="type">void</span> main(<span class="predefined-type">String</span><span class="type">[]</span> args) {
+        <span class="predefined-type">String</span> dir = <span class="string"><span class="delimiter">'</span><span class="content">.</span><span class="delimiter">'</span></span>
+        String outputDir = <span class="string"><span class="delimiter">'</span><span class="content">resources/css/</span><span class="delimiter">'</span></span>
+        <span class="keyword">def</span> conf = <span class="keyword">new</span> Config(<span class="key">prettyPrint</span>: <span class="predefined-constant">true</span>, <span class="key">addOpera</span>: <span class="predefined-constant">false</span>) <span class="comment">// for dev</span>
+        <span class="keyword">new</span> <span class="predefined-type">File</span>(<span class="string"><span class="delimiter">&quot;</span><span class="inline"><span class="inline-delimiter">${</span>dir<span class="inline-delimiter">}</span></span><span class="content">/src/css/groocss</span><span class="delimiter">&quot;</span></span>)
+            .listFiles({ <span class="predefined-type">File</span> f -&gt; f.isFile() } <span class="keyword">as</span> <span class="predefined-type">FileFilter</span>)
+            .each { <span class="predefined-type">File</span> f -&gt; processFile(outputDir, f, conf) }
+    }
+
+    <span class="directive">static</span> <span class="type">void</span> processFile(<span class="predefined-type">String</span> outputDir, <span class="predefined-type">File</span> f, Config conf) {
+        <span class="keyword">def</span> outputFile = <span class="keyword">new</span> <span class="predefined-type">File</span>(<span class="string"><span class="delimiter">&quot;</span><span class="inline"><span class="inline-delimiter">${</span>outputDir<span class="inline-delimiter">}</span></span><span class="inline"><span class="inline-delimiter">${</span>f.name.replace(<span class="string"><span class="delimiter">'</span><span class="content">.groovy</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="delimiter">'</span></span>)<span class="inline-delimiter">}</span></span><span class="delimiter">&quot;</span></span>)
+        GrooCSS.convert conf, f, outputFile
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This will process all of your files under "src/css/groocss" and output the CSS in "resources/css/".</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_imports_build"><a class="anchor" href="#_imports_build"></a>9.2.3. Imports Build</h4>
+<div class="paragraph">
+<p>Within the "imports/build.gradle" file put the following:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy">plugins {
+    id <span class="string"><span class="delimiter">'</span><span class="content">java</span><span class="delimiter">'</span></span>
+}
+
+sourceSets {
+    main {
+        resources {srcDir <span class="string"><span class="delimiter">'</span><span class="content">css/groocss/</span><span class="delimiter">'</span></span>}
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_importing_from_classpath"><a class="anchor" href="#_importing_from_classpath"></a>9.2.4. Importing From Classpath</h4>
+<div class="paragraph">
+<p>Finally, create a file under "src/css/groocss" named "root.css.groovy" and put in the following:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="string"><span class="delimiter">'</span><span class="content">root</span><span class="delimiter">'</span></span>.groocss {
+    importStream(getClass().getResourceAsStream(<span class="string"><span class="delimiter">'</span><span class="content">/elements/a.css.groovy</span><span class="delimiter">'</span></span>))
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This works since at runtime the files from the "imports" sub-project are included as dependencies.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_run_the_build"><a class="anchor" href="#_run_the_build"></a>9.2.5. Run the Build</h4>
+<div class="paragraph">
+<p>Using Gradle (tested with Gradle 5.4.1) run gradle css from the command line.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_font_face"><a class="anchor" href="#_font_face"></a>10. Font-face</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy">fontFace {
+    fontFamily <span class="string"><span class="delimiter">'</span><span class="content">myFirstFont</span><span class="delimiter">'</span></span>
+    fontWeight <span class="string"><span class="delimiter">'</span><span class="content">normal</span><span class="delimiter">'</span></span>
+    src <span class="string"><span class="delimiter">'</span><span class="content">url(sensational.woff)</span><span class="delimiter">'</span></span>
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Resolves to:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="css"><span class="directive">@font-face</span> {
+    <span class="key">font-family</span>: <span class="value">myFirstFont</span>;
+    <span class="key">font-weight</span>: <span class="value">normal</span>;
+    <span class="key">src</span>:<span class="function"><span class="delimiter">url(</span><span class="content">sensational.woff</span><span class="delimiter">)</span></span>;
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_media"><a class="anchor" href="#_media"></a>11. Media</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy">media <span class="string"><span class="delimiter">'</span><span class="content">screen</span><span class="delimiter">'</span></span>, {
+    body { width <span class="string"><span class="delimiter">'</span><span class="content">100%</span><span class="delimiter">'</span></span> }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Produces:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="css"><span class="directive">@media</span> <span class="type">screen</span> {
+<span class="tag">body</span> { <span class="key">width</span>: <span class="float">100%</span>; }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_custom_styles"><a class="anchor" href="#_custom_styles"></a>12. Custom styles</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy">body {
+    add style(<span class="string"><span class="delimiter">'</span><span class="content">-webkit-touch-callout</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">none</span><span class="delimiter">'</span></span>)
+    add style(<span class="string"><span class="delimiter">'</span><span class="content">-webkit-textSize-adjust</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">none</span><span class="delimiter">'</span></span>)
+    add style(<span class="string"><span class="delimiter">'</span><span class="content">-webkit-user-select</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">none</span><span class="delimiter">'</span></span>)
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Resolves to:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="css"><span class="tag">body</span> {
+<span class="key">-webkit-touch-callout</span>: <span class="value">none</span>
+<span class="value">-webkit-textSize-adjust</span>: <span class="value">none</span>
+<span class="value">-webkit-user-select</span>: <span class="value">none</span>
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_detached_styles"><a class="anchor" href="#_detached_styles"></a>13. Detached Styles</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You can also create Detached styles, using the styles method, which can be added conditionally to a concrete style group.</p>
+</div>
+<div class="paragraph">
+<p>For example, see the following simple Closure definition which defines "color #123" if alpha is zero, otherwise it yields color rgba(0,0,0,alpha) which is black with the given opacity:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="keyword">def</span> mycolor = { alpha -&gt;
+    styles {
+        <span class="keyword">if</span> (alpha == <span class="integer">0</span>) color <span class="string"><span class="delimiter">'</span><span class="content">#123</span><span class="delimiter">'</span></span>
+        <span class="keyword">else</span> color rgba(<span class="integer">0</span>,<span class="integer">0</span>,<span class="integer">0</span>,alpha)
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This would allow you to call this Closure later on within your GrooCSS multiple times with different results each time. For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy">table { add mycolor(<span class="integer">0</span>) }
+div { add mycolor(<span class="float">0.5</span>) }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Would yield the following CSS:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="css"><span class="tag">table</span> {
+    <span class="key">color</span>: <span class="color">#123</span>;
+}
+<span class="tag">div</span> {
+    <span class="key">color</span>: <span class="color">rgba(0, 0, 0, 0.50)</span>
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>However, you’re not limited to one parameter or one style. For example, you could have a more complicated scenario like the following:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="keyword">def</span> boxedStyles = { foreColor, timing -&gt;
+    styles {
+        transition <span class="string"><span class="delimiter">&quot;</span><span class="content">all </span><span class="inline"><span class="inline-delimiter">$</span>timing</span><span class="content"> ease</span><span class="delimiter">&quot;</span></span>
+        color shade(foreColor, <span class="float">0.1</span>)
+        background tint(foreColor, <span class="float">0.9</span>)
+        boxShadow <span class="string"><span class="delimiter">&quot;</span><span class="content">10px 5px 5px </span><span class="inline"><span class="inline-delimiter">${</span>shade(foreColor)<span class="inline-delimiter">}</span></span><span class="delimiter">&quot;</span></span>
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This would create styles which transition to a color, background, and box-shadow based on a given color. It would allow the following GrooCSS:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy">div.salmon %hover {
+    add boxedStyles(salmon, <span class="integer">1</span>.s)
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And it would yield the following CSS (with default Config):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="css"><span class="tag">div</span><span class="class">.salmon</span><span class="pseudo-class">:hover</span> {
+    <span class="key">transition</span>: <span class="value">all</span> <span class="float">1s</span> <span class="value">ease</span>;
+    <span class="key">-webkit-transition</span>: <span class="value">all</span> <span class="float">1s</span> <span class="value">ease</span>;
+    <span class="key">-moz-transition</span>: <span class="value">all</span> <span class="float">1s</span> <span class="value">ease</span>;
+    <span class="key">-o-transition</span>: <span class="value">all</span> <span class="float">1s</span> <span class="value">ease</span>;
+    <span class="key">color</span>: <span class="color">#e17366</span>;
+    <span class="key">background</span>: <span class="color">#fef2f0</span>;
+    <span class="key">box-shadow</span>: <span class="float">10px</span> <span class="float">5px</span> <span class="float">5px</span> <span class="color">#7d4039</span>;
+    <span class="key">-webkit-box-shadow</span>: <span class="float">10px</span> <span class="float">5px</span> <span class="float">5px</span> <span class="color">#7d4039</span>;
+    <span class="key">-moz-box-shadow</span>: <span class="float">10px</span> <span class="float">5px</span> <span class="float">5px</span> <span class="color">#7d4039</span>;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Remember, "boxedStyles" could be called multiple times, each time with different parameters. This allows code reuse so can greatly enhance your productivity.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_migrating_from_css_in_a_legacy_application"><a class="anchor" href="#_migrating_from_css_in_a_legacy_application"></a>14. Migrating from CSS in a Legacy Application</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The first step is to make sure your CSS files are properly formatted.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Use a command line utility like cssbeautify ($ npm install cssbeautify-cli) or</p>
+</li>
+<li>
+<p>Use your IDE to format each CSS file (using Ctrl+Alt+Shift+L in IDEA for example)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Once this is done, copy all your CSS files into one folder (in our example we’ll use a directory named "toconvert")</p>
+</div>
+<div class="sect2">
+<h3 id="_translating"><a class="anchor" href="#_translating"></a>14.1. Translating</h3>
+<div class="paragraph">
+<p>Then create a Groovy script for converting those files to GrooCSS using org.groocss.Translator:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="annotation">@Grab</span>(<span class="string"><span class="delimiter">'</span><span class="content">org.groocss:groocss:1.0-RC1-groovy2.5</span><span class="delimiter">'</span></span>)
+<span class="keyword">import</span> <span class="include">org.groocss.*</span>
+<span class="predefined-type">File</span> dir = <span class="keyword">new</span> <span class="predefined-type">File</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">toconvert</span><span class="delimiter">&quot;</span></span>)
+println dir.absolutePath
+dir.listFiles().each { f -&gt;
+    println f
+    Translator.convertFromCSS(f, <span class="keyword">new</span> <span class="predefined-type">File</span>(f.absolutePath + <span class="string"><span class="delimiter">'</span><span class="content">.groovy</span><span class="delimiter">'</span></span>))
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Keep track of the output from this process. You should follow up with every line that uses "raw" and see if you can manually convert them.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_building"><a class="anchor" href="#_building"></a>14.2. Building</h3>
+<div class="paragraph">
+<p>Next, decide which way you want to build your GrooCSS into CSS. Which way depends on if you’re using Gralde, Maven, or something else, and how much control you want over the process.</p>
+</div>
+<div class="paragraph">
+<p>If not using the plugin, you can create a script named "build.groovy" or something similar. This script will convert you groocss files to CSS as part of your build process. Here’s an example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="annotation">@Grab</span>(<span class="string"><span class="delimiter">'</span><span class="content">org.groocss:groocss:1.0-RC1-groovy2.5</span><span class="delimiter">'</span></span>)
+<span class="keyword">import</span> <span class="include">org.groocss.*</span>
+
+<span class="predefined-type">File</span> groocssDir = <span class="keyword">new</span> <span class="predefined-type">File</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">src/groovycss</span><span class="delimiter">&quot;</span></span>)
+<span class="keyword">def</span> cssDir = <span class="string"><span class="delimiter">&quot;</span><span class="content">web/resources/css</span><span class="delimiter">&quot;</span></span>
+<span class="keyword">new</span> <span class="predefined-type">File</span>(cssDir).mkdirs()
+
+groocssDir.listFiles().each { f -&gt;
+    <span class="keyword">try</span> {
+        <span class="keyword">def</span> config = <span class="keyword">new</span> Config(<span class="key">addOpera</span>: <span class="predefined-constant">false</span>, <span class="key">prettyPrint</span>: <span class="predefined-constant">false</span>, <span class="key">compress</span>: <span class="predefined-constant">true</span>)
+        GrooCSS.convert config, f, <span class="keyword">new</span> <span class="predefined-type">File</span>(cssDir, f.name[<span class="integer">0</span>..-<span class="integer">8</span>])
+    } <span class="keyword">catch</span> (e) {
+        println <span class="string"><span class="delimiter">&quot;</span><span class="content">ERROR in </span><span class="inline"><span class="inline-delimiter">$</span>f</span><span class="content">.name</span><span class="delimiter">&quot;</span></span>
+        e.printStackTrace()
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This example expects all of your GroovyCSS files to be in the "src/groovycss" directory and end with ".css.groovy". Your CSS files will end up in "web/resources/css".</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_verifying_conversion"><a class="anchor" href="#_verifying_conversion"></a>14.3. Verifying Conversion</h3>
+<div class="paragraph">
+<p>Next you should make sure that all of your converted CSS files are identical to old CSS. To do this simply on a Linux command line, use the following command (assuming old CSS files are in web/styles/):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="shell">ls web/styles/ | xargs -I{} diff -wiB web/resources/css/{} web/styles/{} &gt; css.diff</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This goes through every converted CSS file and compares it to the original while ignoring case, whitespace, and blank lines. Look at the resulting "css.diff" file to see what changed. There will probably be a lot of differences but just make sure they don’t change the meaning of the CSS.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_processors"><a class="anchor" href="#_processors"></a>15. Processors</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Processors allow you to write custom code (in any JVM language such as Java or Groovy) to process or validate your CSS before and during its generation. With Processors you can enforce rules, modify certain inputs, and generate CSS from given GrooCSS values. GrooCSS is built from the ground up to easily allow modification.</p>
+</div>
+<div class="paragraph">
+<p>There are currently three phases:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>PRE_VALIDATE</p>
+</li>
+<li>
+<p>VALIDATE</p>
+</li>
+<li>
+<p>POST_VALIDATE</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>During any phase if your Processor method returns a non-empty Optional value that will be considered a Validation failure and treated as an error. The given value will be printed out so that the user can then fix the problem.</p>
+</div>
+<div class="paragraph">
+<p>In this way, your Processors could modify input in phase 1, validate it in phase 2 and do post-processing in phase 3.</p>
+</div>
+<div class="paragraph">
+<p>You are only limited to what you can dream up, but here are some examples:</p>
+</div>
+<div class="sect2">
+<h3 id="_conversion"><a class="anchor" href="#_conversion"></a>15.1. Conversion</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="type">class</span> <span class="class">ConvertAllIntsToPixels</span> <span class="directive">implements</span> Processor&lt; <span class="predefined-type">Style</span> &gt; {
+ Optional process(<span class="predefined-type">Style</span> style, Phase phase) {
+     <span class="keyword">if</span> (phase == Phase.PRE_VALIDATE &amp;&amp; style.value <span class="keyword">instanceof</span> <span class="predefined-type">Integer</span>) {
+         style.value = <span class="keyword">new</span> Measurement(style.value, <span class="string"><span class="delimiter">'</span><span class="content">px</span><span class="delimiter">'</span></span>)
+     }
+     <span class="keyword">return</span> Optional.empty();
+ }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This Processor would convert any given int values into pixel measurement. So for example, "padding 2" would become "padding: 2px" in the CSS output.</p>
+</div>
+<div class="paragraph">
+<p>Note that we put it in the PRE_VALIDATION phase. This would allow us to validate Measurements are not numbers in the VALIDATION phase.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_validation"><a class="anchor" href="#_validation"></a>15.2. Validation</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="keyword">import</span> <span class="include">org.groocss.*</span>
+
+<span class="type">class</span> <span class="class">PaddingValidator</span> <span class="directive">implements</span> Processor&lt; <span class="predefined-type">Style</span> &gt; {
+    Optional process(<span class="predefined-type">Style</span> style, Phase phase) {
+        <span class="keyword">if</span> (phase == Phase.VALIDATE &amp;&amp;
+            style.name == <span class="string"><span class="delimiter">&quot;</span><span class="content">padding</span><span class="delimiter">&quot;</span></span> &amp;&amp;
+            !(style.value <span class="keyword">instanceof</span> <span class="predefined-type">String</span> &amp;&amp;
+                style.value.endsWith(<span class="string"><span class="delimiter">&quot;</span><span class="content">px</span><span class="delimiter">&quot;</span></span>))) {
+         <span class="keyword">return</span> Optional.of(<span class="string"><span class="delimiter">&quot;</span><span class="content">padding with value </span><span class="inline"><span class="inline-delimiter">$</span>style</span><span class="content">.value is not a px</span><span class="delimiter">&quot;</span></span>.toString())
+        }
+        <span class="keyword">return</span> Optional.empty();
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This PaddingValidator would validate that a padding value is always a String that ends with "px".</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_defaultvalidator_and_requiremeasurements"><a class="anchor" href="#_defaultvalidator_and_requiremeasurements"></a>15.3. DefaultValidator and RequireMeasurements</h3>
+<div class="paragraph">
+<p>GrooCSS uses the Processor mechanism internally as well. It comes with DefaultValidator which is automatically added to the set of Processors before processing. It validates that if a value is a Measurement, it’s of an allowed type. For example, "padding 2.deg" would cause an exception.</p>
+</div>
+<div class="paragraph">
+<p>GrooCSS also comes with a built-in Processor that is not enabled by default, RequireMeasurements. It validates that every value that should be a Measurement is one. This means that "padding '2px'" would not be allowed, only "padding 2.px" for example.</p>
+</div>
+<div class="paragraph">
+<p>RequireMeasurement extends AbstractValidator, which is an abstract class that implements Processor and calls an abstract method "validate" only during the VALIDATE phase. You can also extend AbstractValidator if you want.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_extensions"><a class="anchor" href="#_extensions"></a>15.4. Extensions</h3>
+<div class="paragraph">
+<p>However, Processors need not be restricted to validating or simple conversions. Processors could also greatly expand from input.</p>
+</div>
+<div class="paragraph">
+<p>For example, the following Processor, named "Expander", would expand "mp" to generate both "margin" and "padding".</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"> <span class="keyword">import</span> <span class="include">org.groocss.*</span>
+ <span class="type">class</span> <span class="class">Expander</span> <span class="directive">implements</span> Processor&lt; StyleGroup &gt; {
+     Optional process(StyleGroup sg, Phase phase) {
+         <span class="keyword">if</span> (phase == Phase.PRE_VALIDATE) {
+            <span class="keyword">def</span> style = sg.styleList.find{ <span class="local-variable">it</span>.name == <span class="string"><span class="delimiter">'</span><span class="content">mp</span><span class="delimiter">'</span></span> }
+            <span class="keyword">if</span> (style) {
+                style.name = <span class="string"><span class="delimiter">&quot;</span><span class="content">padding</span><span class="delimiter">&quot;</span></span>
+                sg.add(<span class="keyword">new</span> <span class="predefined-type">Style</span>(<span class="string"><span class="delimiter">'</span><span class="content">margin</span><span class="delimiter">'</span></span>, style.value))
+            }
+         }
+         <span class="keyword">return</span> Optional.empty();
+     }
+ }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>-Note that the generic type (StyleGroup in this class) determines what type will be processed by your Processor.</p>
+</div>
+<div class="paragraph">
+<p>This allows the input to use those shortcuts in GrooCSS such as the following:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy">table {
+    add style(<span class="string"><span class="delimiter">'</span><span class="content">mp</span><span class="delimiter">'</span></span>, <span class="integer">10</span>.px)
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Which will become the following CSS:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="css"><span class="tag">table</span> {
+    <span class="key">margin</span>: <span class="float">10px</span>;
+    <span class="key">padding</span>: <span class="float">10px</span>;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This example demonstrates how Processors can modify and add to generated CSS.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_using_processors"><a class="anchor" href="#_using_processors"></a>15.5. Using Processors</h3>
+<div class="paragraph">
+<p>Using Processors is a simple matter of setting them in the Config object.</p>
+</div>
+<div class="paragraph">
+<p>See the docs for more details.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_micronaut_exampleasset_pipeline"><a class="anchor" href="#_micronaut_exampleasset_pipeline"></a>16. Micronaut Example/Asset-pipeline</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The GrooCSS codebase includes a working Micronaut example that uses Micronaut with asset-pipeline.</p>
+</div>
+<div class="paragraph">
+<p>Taking a look at the build file, you’ll see the asset-pipeline plugin is included among the plugins:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy">plugins {
+    id <span class="string"><span class="delimiter">&quot;</span><span class="content">io.spring.dependency-management</span><span class="delimiter">&quot;</span></span> version <span class="string"><span class="delimiter">&quot;</span><span class="content">1.0.6.RELEASE</span><span class="delimiter">&quot;</span></span>
+    id <span class="string"><span class="delimiter">&quot;</span><span class="content">com.github.johnrengelman.shadow</span><span class="delimiter">&quot;</span></span> version <span class="string"><span class="delimiter">&quot;</span><span class="content">4.0.2</span><span class="delimiter">&quot;</span></span>
+    id <span class="string"><span class="delimiter">&quot;</span><span class="content">com.bertramlabs.asset-pipeline</span><span class="delimiter">&quot;</span></span> version <span class="string"><span class="delimiter">&quot;</span><span class="content">3.0.6</span><span class="delimiter">&quot;</span></span>
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Second, you’ll need to add asset-pipeline-micronaut as a runtime dependency and the groocss-asset-pipeline as a "assets" level depenedency (a custom asset-pipeline configuration).</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy">runtime <span class="string"><span class="delimiter">'</span><span class="content">com.bertramlabs.plugins:asset-pipeline-micronaut:3.0.7</span><span class="delimiter">'</span></span>
+assets <span class="string"><span class="delimiter">'</span><span class="content">com.bertramlabs.plugins:groocss-asset-pipeline:3.0.7</span><span class="delimiter">'</span></span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This will allow you to put GrooCSS files in "src/assets/lib" and have them automatically converted to CSS available to your application.</p>
+</div>
+<div class="paragraph">
+<p>See the asset-pipeline docs for more.</p>
+</div>
+<div class="paragraph">
+<p>Or checkout the Micronaut example code.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_staticcode_completion"><a class="anchor" href="#_staticcode_completion"></a>17. Static/Code Completion</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>GrooCSS has always made static code compilation one of its priorities. However, for greatest similarity to CSS, it was necessary to use dynamic method calls (using methodMissing behind the scenes) to allow for the .styleClass syntax (and more) to work.</p>
+</div>
+<div class="paragraph">
+<p>To support fully static code (which enables code completion in your IDE), there are several ways to define CSS selectors without resorting to any dynamic method calls.</p>
+</div>
+<div class="sect2">
+<h3 id="_set_up_your_ide"><a class="anchor" href="#_set_up_your_ide"></a>17.1. Set Up Your IDE</h3>
+<div class="paragraph">
+<p>First you need to setup your IDE.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>IDEA: Create a new Module of type Groovy.</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Eclipse: Create a new Project of type Groovy (make sure you have a Groovy plugin installed).</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Create a directory, "src/css/groocss" and tell your IDE this is a source folder.</p>
+</div>
+<div class="paragraph">
+<p>Make sure that you have a groocss JAR as a dependency in your Module or project’s definition.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_root_groocss"><a class="anchor" href="#_root_groocss"></a>17.2. Root GrooCSS</h3>
+<div class="paragraph">
+<p>To begin a fully static GrooCSS file, you can start with 'foo'.groocss { and end with }, where "foo" should be the name of the current file.</p>
+</div>
+<div class="paragraph">
+<p>For example, create a file under "src/css/groocss" named "root.css.groovy" and put in the following:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="string"><span class="delimiter">'</span><span class="content">root</span><span class="delimiter">'</span></span>.groocss {
+html { color black }
+body { width <span class="integer">100</span>%_ }
+<span class="string"><span class="delimiter">'</span><span class="content">div.main-div</span><span class="delimiter">'</span></span>.sg { fontSize <span class="integer">2</span>.em }
+<span class="string"><span class="delimiter">'</span><span class="content">button1</span><span class="delimiter">'</span></span>.id { width <span class="integer">20</span>.em }
+_ ** selection { color <span class="string"><span class="delimiter">'</span><span class="content">#ffeefe</span><span class="delimiter">'</span></span> }
+<span class="error">$</span>(<span class="string"><span class="delimiter">'</span><span class="content">.list li</span><span class="delimiter">'</span></span>) { appearance <span class="string"><span class="delimiter">'</span><span class="content">none</span><span class="delimiter">'</span></span> }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The above would yield the following CSS:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="css"><span class="tag">html</span> { <span class="key">color</span>: <span class="value">Black</span>; }
+<span class="tag">body</span> { <span class="key">width</span>: <span class="float">100%</span>; }
+<span class="tag">div</span><span class="class">.main-div</span> { <span class="key">font-size</span>: <span class="float">2em</span>; }
+<span class="id">#button1</span> { <span class="key">width</span>: <span class="float">20em</span>; }
+<span class="pseudo-class">::selection</span> { <span class="key">color</span>: <span class="color">#ffeefe</span>; }
+<span class="class">.list</span> <span class="tag">li</span> { <span class="key">appearance</span>: <span class="value">none</span>; }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Note that you can mix and match many different operators and methods as long as you don’t call an undefined method.
+Building</p>
+</div>
+<div class="paragraph">
+<p>Building is the same as already discussed.
+Importing</p>
+</div>
+<div class="paragraph">
+<p>You can always use importFile(filename) or importFile(File) to import another file.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_allowed_static_code"><a class="anchor" href="#_allowed_static_code"></a>17.3. Allowed Static Code</h3>
+<div class="sect3">
+<h4 id="_allowed"><a class="anchor" href="#_allowed"></a>17.3.1. Allowed</h4>
+<div class="paragraph">
+<p>To keep all of your GrooCSS code statically typed, the following is allowed/static/non-dynamic code:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="keyword">def</span> myColor = c(<span class="string"><span class="delimiter">'</span><span class="content">#fe33ac</span><span class="delimiter">'</span></span>)
+    table {
+    color myColor
+}
+input[<span class="string"><span class="delimiter">'</span><span class="content">class$=&quot;test&quot;</span><span class="delimiter">'</span></span>] = { <span class="comment">//becomes input[class$=&quot;test&quot;]</span>
+    background yellow
+}
+sg <span class="string"><span class="delimiter">'</span><span class="content">#formId</span><span class="delimiter">'</span></span>, {
+    minWidth <span class="integer">100</span>.px <span class="comment">// resolves to 100px</span>
+}
+p + div {
+    border <span class="string"><span class="delimiter">'</span><span class="content">1px solid black</span><span class="delimiter">'</span></span>
+}
+p | a { color red }         <span class="comment">// | =&gt; ,</span>
+p &gt;&gt; a { color blue }       <span class="comment">//&gt;&gt; =&gt; &gt;</span>
+p * a { color blue }        <span class="comment">// * =&gt; *</span>
+p - a { color blue }        <span class="comment">// - =&gt; ~(tilde)</span>
+p ^ a { color blue }        <span class="comment">// ^ =&gt;  (space)</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_not_allowed"><a class="anchor" href="#_not_allowed"></a>17.3.2. Not Allowed</h4>
+<div class="paragraph">
+<p>The following is not-allowed/dynamic code:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy">table.my_class {         <span class="comment">//&lt;-- style-class</span>
+}
+_.box {                  <span class="comment">//&lt;-- style-class</span>
+}
+_.box div {              <span class="comment">//&lt;-- style-class</span>
+}
+body p div {             <span class="comment">//&lt;-- No operators separating the elements</span>
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_conclusion"><a class="anchor" href="#_conclusion"></a>17.4. Conclusion</h3>
+<div class="paragraph">
+<p>Since GrooCSS is just Groovy code, you should have IDE code completion (in IntelliJ IDEA for example click Ctrl+Space for code completion) when you stick to non-dynamic code.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_variables"><a class="anchor" href="#_variables"></a>18. Variables</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Variables allow you make values available to your GrooCSS at compile time through Config (or through method parameters of convertWithoutBase).</p>
+</div>
+<div class="paragraph">
+<p>You can also use a Properties file to define variables with the variable. prefix. Or you can directly pass variable values through the Config object.
+Config with Variables</p>
+</div>
+<div class="paragraph">
+<p>There are three main methods on Config for setting variable values:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>withVariable(String key, Object value)</code> Takes a variable name and value, adds it to variables Map.</p>
+</li>
+<li>
+<p><code>withVariables(String key, Object value, String key2, Object value2)</code> Takes a two variable names and values, adds them to variables Map.</p>
+</li>
+<li>
+<p><code>withVariables(Map&lt;String, Object&gt; variables)</code> Takes a map of variable name to value, adds them to variables Map.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Each of these methods returns the Config object so they can be chained.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Groovy allows map parameters to be passed easily using the map-parameter syntax. Eg:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="keyword">def</span> config = <span class="keyword">new</span> Config().withVariables(<span class="key">foreGround</span>: <span class="string"><span class="delimiter">'</span><span class="content">#123</span><span class="delimiter">'</span></span>, <span class="key">backGround</span>: <span class="string"><span class="delimiter">'</span><span class="content">#abc</span><span class="delimiter">'</span></span>)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This allows you to reference these variables within your GrooCSS files.
+Gradle with Variables</p>
+</div>
+<div class="paragraph">
+<p>With the Gradle plugin, it might be useful to pass the buildDir to your GrooCSS files.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy">task css(<span class="key">type</span>: org.groocss.GroocssTask, <span class="key">dependsOn</span>: convertCss) {
+    conf = <span class="keyword">new</span> org.groocss.Config().withVariables(<span class="key">buildDir</span>: project.buildDir)
+    from <span class="string"><span class="delimiter">'</span><span class="content">groocss/</span><span class="delimiter">'</span></span>
+    into <span class="string"><span class="delimiter">&quot;</span><span class="content">css/</span><span class="delimiter">&quot;</span></span>
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Or when using the built-in task (convertCss):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy">groocss {
+    processors = <span class="type">[]</span>
+    variables = [<span class="key">buildDir</span>: project.buildDir]
+}
+
+groocssfiles {
+    allfiles {
+        inFile = file(<span class="string"><span class="delimiter">'</span><span class="content">src/main/groovy/</span><span class="delimiter">'</span></span>)
+        outFile = file(<span class="string"><span class="delimiter">&quot;</span><span class="content">css/</span><span class="delimiter">&quot;</span></span>)
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This can enable you to use importFile using the buildDir variable. Eg:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="string"><span class="delimiter">'</span><span class="content">main</span><span class="delimiter">'</span></span>.groocss {
+    importFile(<span class="string"><span class="delimiter">&quot;</span><span class="inline"><span class="inline-delimiter">$</span>buildDir</span><span class="content">/../groocss/myfile1.css.groovy</span><span class="delimiter">&quot;</span></span>)
+    importFile(<span class="string"><span class="delimiter">&quot;</span><span class="inline"><span class="inline-delimiter">$</span>buildDir</span><span class="content">/../groocss/myfile2.css.groovy</span><span class="delimiter">&quot;</span></span>)
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Version 1.0.0-SNAPSHOT<br>
+Last updated 2023-01-10 15:51:38 +0100
+</div>
+</div>
+<link rel="stylesheet" href="./coderay-asciidoctor.css">
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]],
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+  TeX: { equationNumbers: { autoNumber: "none" } }
+})
+MathJax.Hub.Register.StartupHook("AsciiMath Jax Ready", function () {
+  MathJax.InputJax.AsciiMath.postfilterHooks.Add(function (data, node) {
+    if ((node = data.script.parentNode) && (node = node.parentNode) && node.classList.contains('stemblock')) {
+      data.math.root.display = "block"
+    }
+    return data
+  })
+})
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
+</body>
+</html>
