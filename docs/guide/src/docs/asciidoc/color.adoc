@@ -1,0 +1,36 @@
+
+## Colors and Images
+
+### Colors
+
+Use the "c", "clr", "rgb" or "rgba" methods to create a color. For example:
+
+[source, groovy]
+----
+def css = GrooCSS.process {
+    def sea = c('5512ab') //OR rgb(85, 18, 171)
+    _.sea {
+        color darken(sea)
+        background sea.brighter()
+        border "5px solid ${sea.alpha(0.5)}"
+    }
+}
+----
+
+See the javadoc for all available methods.
+
+You can also use named colors:
+
+[source, groovy]
+----
+_.blue {
+    color darkBlue
+    background aliceBlue
+}
+----
+
+### Image Methods
+
+- Measurement getImageHeight(String filename): Gets the height of an image.
+- String getImageSize(String filename): Gets the size of an image.
+- Measurement getImageWidth(String filename): Gets the width of an image.

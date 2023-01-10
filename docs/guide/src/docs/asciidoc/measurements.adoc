@@ -1,0 +1,14 @@
+## Measurements and math
+
+Built into GrooCSS is the ability to do math with any compatiable Measurement types.
+
+A Measurement is created by a number "." type notation (see below).
+Measurement Math
+
+[source, groovy]
+----
+def myWidth = 100.pt + 1.in // converts to pt
+def myDelay = 100.ms + 1.s     // converts to ms
+def mySize = myWidth / 2    // you can multiply/divide with any number
+def doubleSize = myWidth * 2
+----

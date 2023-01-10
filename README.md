@@ -1,22 +1,16 @@
 
-[Build Status](https://gitlab.com/adamldavis/groocss/pipelines)
-[ ![Download](https://api.bintray.com/packages/adamldavis/maven/GrooCSS/images/download.svg) ](https://bintray.com/adamldavis/maven/GrooCSS/_latestVersion)
-/ [Gradle Plugin](https://plugins.gradle.org/plugin/org.groocss.groocss-gradle-plugin)
+![GitHub](https://img.shields.io/github/license/grooviter/groocss)
+![Maven Central](https://img.shields.io/maven-central/v/com.github.grooviter/groocss)
+![Sonatype Nexus (Snapshots)](https://img.shields.io/nexus/s/com.github.grooviter/groocss?server=https%3A%2F%2Fs01.oss.sonatype.org)
 
 # GrooCSS
+[GrooCSS](https://grooviter.github.io/groocss/) lets you code your CSS in Groovy, using a natural Groovy DSL.
 
-Like [Less](http://lesscss.org/) but without inventing a new language.
-
-[GrooCSS](http://groocss.org) lets you code your CSS in Groovy, using a natural Groovy DSL.
-
-It was created by Adam L. Davis (@adamldavis) and inspired by the many other Groovy-based projects out there, like 
-[Gradle](gradle.org), [Grails](https://grails.org/), 
-[Spock](https://github.com/spockframework/spock), [Ratpack](https://ratpack.io/), and [grooscript](http://grooscript.org/).
-
-- DSL similar to CSS but with camel-case and some modifications to make it valid Groovy.
+- DSL similar to CSS but with camel-case and some modifications to make it valid Groovy code.
 - Keyframes, media, charset, and font-face support.
 - Automatically adds -webkit, -ms, -moz, -o extensions! (configurable)
-- Color support with rgb, rgba, hex, named colors, and several color changing methods (mix, tint, shade, saturate, etc.)
+- Color support with rgb, rgba, hex, named colors
+- Several color changing methods (mix, tint, shade, saturate, etc.)
 - Minimization (compress)
 - Support for transforms directly (transformX, etc),
 - Math functions (sqrt, sin, cos, toRadians, etc.) and built-in Measurement math.
@@ -24,23 +18,23 @@ It was created by Adam L. Davis (@adamldavis) and inspired by the many other Gro
 - Ability to extend style-groups and add internal groups.
 - Pseudo-classes in DSL (nthChild, etc.)
 - Multiple ways to configure: Config.builder() or using withConfig
-- Close to CSS syntax using getAt, putAt, operator-overloading, underscore, methodMissing, and propertyMissing
 - Translator to convert from existing CSS.
 - Available pretty print (using Config)
 - Ability to create and reuse groups of styles using styles{} syntax.
 - Methods for getting an image's width, height, or size.
 - Validates some values by default and can be configured with custom validators and/or processors.
-- Uses Groovy extension modules
 
-## Tested
+This project is a fork of the original [GrooCSS by Adam L. Davis](https://github.com/adamldavis/groocss)
 
-Uses Spock for testing. Well tested.
+## Documentation
 
-## Open Source
+Check out the [website](https://grooviter.github.io/groocss/) for more info.
 
-Apache 2 licensed. Open Source. 
+## How to contribute
 
-## Website
+Please see [contribution page](./CONTRIBUTING.md) for contribution guidelines.
 
-_Check out the [website](http://www.groocss.org/) for more info._
+## License
+
+GrooCSS is licensed under [ASLv2](http://www.apache.org/licenses/LICENSE-2.0). All source code falls under this license.
 

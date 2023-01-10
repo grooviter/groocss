@@ -1,0 +1,41 @@
+= GrooCSS
+:revnumber: {version}
+:numbered:
+:imagesDir: images/
+:baseDir: ../../../../../modules
+:stem:
+
+image::{includedir}/images/groocss2_256.png[align=center]
+
+[quote, align=center]
+**GrooCSS** lets you code your CSS in Groovy, using a natural Groovy DSL with optional code completion
+
+include::{includedir}/intro.adoc[]
+
+include::{includedir}/gradle.adoc[]
+
+include::{includedir}/measurements.adoc[]
+
+include::{includedir}/configuration.adoc[]
+
+include::{includedir}/color.adoc[]
+
+include::{includedir}/extending.adoc[]
+
+include::{includedir}/pseudo-classes.adoc[]
+
+include::{includedir}/keyframes.adoc[]
+
+include::{includedir}/importing.adoc[]
+
+include::{includedir}/font.adoc[]
+
+include::{includedir}/migrating.adoc[]
+
+include::{includedir}/processors.adoc[]
+
+include::{includedir}/examples.adoc[]
+
+include::{includedir}/ides.adoc[]
+
+include::{includedir}/variables.adoc[]

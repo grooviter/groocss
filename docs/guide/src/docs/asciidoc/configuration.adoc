@@ -1,0 +1,46 @@
+## Configuration
+
+### Config
+
+There are several different ways to configure GrooCSS:
+
+- **Using the groovy constructor**: `new Config(compress: true)`
+- **Using the builder syntax**: `Config.builder().compress(true).build()`
+- **Using the DSL**: `GrooCSS.withConfig { noExts().compress().utf8() }.process {}`
+- Properties
+
+Of these options, the third is most recommended. With the DSL there are several chainable methods available to easily configure your CSS:
+
+- `noExts()` - sets all extension flags to false (addOpera, etc.)
+- `onlyMs()`, onlyWebkit(), etc. - sets all extensions flags to false except one.
+- `utf8()` - sets the charset to UTF-8.
+- `compress()` - sets compress flag to true.
+
+### Properties
+
+You can also use a Properties file to define Config. For example create a file named "groocss.properties" with the following content (true/TRUE/yes/t are all considered true):
+
+[source,properties]
+----
+addMoz=false
+compress=true
+variable.baseUrl=http://mywebsite.com/assets/
+----
+
+Anything that starts with "variable." will use the rest of the key ("baseUrl" above) as the name of variable and set the given value to it. See more about variables here.
+
+It allows the property "processorClasses" to be a list of class-names separated by commas for Processors to use and "styleClasses" can be a comma separated list of styleClasses.
+
+Or with the Gradle plugin you can use propertiesFile = file("groocss.properties") within the task definition.
+Compressing (Minimization)
+
+To "compress" the output (no new-lines), just pass in a Config object:
+
+[source, groovy]
+----
+GrooCSS.process(new Config(compress: true))
+//OR
+GrooCSS.convert(new Config(compress: true), infile, outfile)
+//OR
+groocss { compress = true } // using Gradle plugin
+----

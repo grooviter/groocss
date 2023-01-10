@@ -1,0 +1,26 @@
+## Gradle Plugin
+
+There's a GroocssTask available that extends Gradle's CopyTask to give you finer-grained control of how to convert your files. Here's an example using a task:
+
+[source, groovy]
+----
+plugins {
+    id "org.groocss.groocss-gradle-plugin" version "1.0-RC1-groovy2.5"
+}
+
+def cssDir = "$parent.buildDir/../www/css"
+
+task css(type: org.groocss.GroocssTask, dependsOn: convertCss) {
+    conf = new org.groocss.Config(compress: true, addOpera: false)
+    from 'index.groocss'
+    into "$cssDir/index.css.min"
+}
+----
+
+To process multiple files from and into can be directories (it will assume groocss files end in .groovy or .groocss). For example, files ending in .css.groovy will be converted to files ending in .css.
+See this page for more about Config.
+
+Using Gradle 4 or later you can use the "-t" command line option to continuously update your files. In other words, every time you change a .css.groovy file it will be automatically converted to a css file.
+
+See learning-groovy for a working example (subproject2).
+
