@@ -69,12 +69,11 @@ gitPublish {
 }
 
 gitPublishPush {
-    dependsOn 'setAuthentication'
-    dependsOn 'generateSite'
+    dependsOn('setAuthentication')
 }
 
 task generateSite {
-    dependsOn("clean", ":groocss:groovydoc", ":guide:asciidoctor", ":website:assetClean", ":website:assetCompile")
+    dependsOn(":groocss:groovydoc", ":guide:asciidoctor", ":website:assetClean", ":website:assetCompile")
     doLast {
         copy {
             from "$rootDir/docs/guide/build/docs/asciidoc"
@@ -87,7 +86,7 @@ task generateSite {
     }
 }
 
-task setAuthentication(dependsOn: 'generateSite') {
+task setAuthentication {
     doLast {
         System.setProperty('org.ajoberstar.grgit.auth.username', findProperty('PUBLISH_GH_TOKEN'))
     }

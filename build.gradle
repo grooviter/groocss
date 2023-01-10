@@ -45,6 +45,42 @@ config {
                 roles = ['developer']
             }
         }
+        repositories {
+            repository {
+                name = 'releases'
+                url  = 'https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/'
+                credentials {
+                    username = findProperty("PUBLISH_REPO_USERNAME")
+                    password = findProperty("PUBLISH_REPO_PASSWORD")
+                }
+            }
+            repository {
+                name = 'snapshots'
+                url  = 'https://s01.oss.sonatype.org/content/repositories/snapshots/'
+                credentials {
+                    username = findProperty("PUBLISH_REPO_USERNAME")
+                    password = findProperty("PUBLISH_REPO_PASSWORD")
+                }
+            }
+        }
+    }
+    artifacts {
+        minpom {
+            enabled
+        }
+    }
+    publishing {
+        releasesRepository  = "releases"
+        snapshotsRepository = "snapshots"
+        signing {
+            enabled   = !version.endsWith("SNAPSHOT")
+            keyId     = findProperty("PUBLISH_SIGN_KEY_ID")
+            secretKey = findProperty("PUBLISH_SIGN_KEY")
+            password  = findProperty("PUBLISH_SIGN_SECRET")
+        }
+        pom {
+            overwriteInceptionYear = "2016"
+        }
     }
     licensing {
         licenses {
@@ -99,6 +135,7 @@ static List<String> snapshots() {
     return [
             ':groocss:publishAllPublicationsToSnapshotsRepository',
             ':groocss-gradle-plugin:publishAllPublicationsToSnapshotsRepository',
+            ':website:generateSite',
             ':website:gitPublishPush',
             'jreleaserRelease'
     ]
@@ -108,6 +145,7 @@ static List<String> releases() {
     return [
             ':groocss:publish',
             ':groocss-gradle-plugin:publish',
+            ':website:generateSite',
             ':website:gitPublishPush',
             'jreleaserFullRelease'
     ]
