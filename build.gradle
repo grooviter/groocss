@@ -82,6 +82,27 @@ config {
             overwriteInceptionYear = "2016"
         }
     }
+    docs {
+        groovydoc {
+            excludes       = ["META-INF"]
+            replaceJavadoc = true
+            options {
+                docTitle    = "GrooCSS"
+                windowTitle =  "Code CSS in Groovy"
+                link 'https://docs.oracle.com/javase/11/docs/api/', 'java'
+                link 'http://docs.groovy-lang.org/latest/html/api/', 'groovy', 'org.codehaus.groovy'
+            }
+            aggregate {
+                enabled        = true
+                replaceJavadoc = true
+            }
+        }
+        javadoc {
+            autoLinks {
+                useJavadocIo = true
+            }
+        }
+    }
     licensing {
         licenses {
             license {
@@ -133,21 +154,19 @@ allprojects {
 
 static List<String> snapshots() {
     return [
-            ':groocss:publishAllPublicationsToSnapshotsRepository',
-            ':groocss-gradle-plugin:publishAllPublicationsToSnapshotsRepository',
-            ':website:generateSite',
-            ':website:gitPublishPush',
-            'jreleaserRelease'
+        ':groocss:publishAllPublicationsToSnapshotsRepository',
+        ':groocss-gradle-plugin:publishAllPublicationsToSnapshotsRepository',
+        ':website:gitPublishPush',
+        'jreleaserRelease'
     ]
 }
 
 static List<String> releases() {
     return [
-            ':groocss:publish',
-            ':groocss-gradle-plugin:publish',
-            ':website:generateSite',
-            ':website:gitPublishPush',
-            'jreleaserFullRelease'
+        ':groocss:publish',
+        ':groocss-gradle-plugin:publish',
+        ':website:gitPublishPush',
+        'jreleaserFullRelease'
     ]
 }
 

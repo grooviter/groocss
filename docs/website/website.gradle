@@ -69,11 +69,11 @@ gitPublish {
 }
 
 gitPublishPush {
-    dependsOn('setAuthentication')
+    dependsOn('setAuthentication', 'generateSite')
 }
 
 task generateSite {
-    dependsOn(":groocss:groovydoc", ":guide:asciidoctor", ":website:assetClean", ":website:assetCompile")
+    dependsOn("clean", ":groocss:groovydoc", ":guide:asciidoctor", ":website:assetClean", ":website:assetCompile")
     doLast {
         copy {
             from "$rootDir/docs/guide/build/docs/asciidoc"
