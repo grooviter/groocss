@@ -1,7 +1,7 @@
 
-![GitHub](https://img.shields.io/github/license/adamldavis/groocss)
-![Maven Central](https://img.shields.io/maven-central/v/org.groocss/groocss)
-![Gradle Plugin Portal](https://img.shields.io/gradle-plugin-portal/v/org.groocss.groocss-gradle-plugin)
+![GitHub](https://img.shields.io/github/license/grooviter/groocss)
+![Maven Central](https://img.shields.io/maven-central/v/com.github.grooviter/groocss)
+![Sonatype Nexus (Snapshots)](https://img.shields.io/nexus/s/com.github.grooviter/groocss?server=https%3A%2F%2Fs01.oss.sonatype.org)
 
 # GrooCSS
 [GrooCSS](https://grooviter.github.io/groocss/) lets you code your CSS in Groovy, using a natural Groovy DSL.
